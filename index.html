@@ -397,8 +397,6 @@ html.introlock,html.introlock body{overflow:hidden}
 .intro.has3d .i-sky,.intro.has3d .i-ground,.intro.has3d .i-car,.intro.has3d .i-lines{visibility:hidden}
 .intro.has3d .i-text{text-shadow:0 2px 20px #0b0820}
 </style></head><body>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <div class="intro" id="intro" role="dialog" aria-label="Page d'entrée">
 <div class="i-sky"><div class="i-sun"><i></i></div><div class="i-mtn e"></div><div class="i-mtn b"></div></div>
 <div class="i-ground"><div class="i-grid"></div><div class="i-road"><i></i></div></div>
@@ -430,7 +428,7 @@ html.introlock,html.introlock body{overflow:hidden}
   const done = () => { it.classList.add('out'); root.classList.remove('introlock'); window.__intro3d?.stop(); setTimeout(() => it.remove(), 800); };
   if (h && h !== 'top') { it.remove(); } else {
     root.classList.add('introlock');
-    { const J = 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/'; ['https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js','intro3d.js',J + 'postprocessing/EffectComposer.js',J + 'postprocessing/RenderPass.js',J + 'postprocessing/UnrealBloomPass.js',J + 'postprocessing/ShaderPass.js',J + 'postprocessing/OutputPass.js',J + 'postprocessing/Pass.js',J + 'postprocessing/MaskPass.js',J + 'shaders/CopyShader.js',J + 'shaders/LuminosityHighPassShader.js',J + 'shaders/OutputShader.js',J + 'geometries/RoundedBoxGeometry.js',J + 'objects/Reflector.js'].forEach(u => { const l = document.createElement('link'); l.rel = 'modulepreload'; l.crossOrigin = ''; l.href = u; document.head.append(l); }); import('./intro3d.js').catch(() => it.classList.add('nofx')); setTimeout(() => { if (!it.classList.contains('has3d')) it.classList.add('slow'); }, 12000); }
+    { const l = document.createElement('link'); l.rel = 'modulepreload'; l.href = 'intro3d.js'; document.head.append(l); import('./intro3d.js').catch(() => it.classList.add('nofx')); setTimeout(() => { if (!it.classList.contains('has3d')) it.classList.add('slow'); }, 12000); }
     const red = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const ready = () => it.classList.contains('has3d') || it.classList.contains('nofx') || it.classList.contains('slow');
     const go = () => { if (it.classList.contains('go') || !ready()) return; if (red) return done(); it.classList.add('go'); const d3 = window.__intro3d; if (d3) d3.nitro(); setTimeout(done, d3 ? 1900 : 1450); };
