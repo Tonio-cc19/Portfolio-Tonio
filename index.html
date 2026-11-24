@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#120f26"><title>Tonio Cocco Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,600;1,6..96,700&family=Hanken+Grotesk:wght@400;500;600&family=Michroma&display=swap" id="gf">
+<style>
+/* VOICE a young designer's studio at night in Miami: warm, cinematic, calm; never loud
+   IDEA « le fil » : one neon-pink line strung across a Miami sunset, then on through the night; every project pinned to it with aqua clothespins
+   PICTURE the hero is a dusk sky over the sea with a striped sun on the horizon; the first line hangs exactly on that horizon
+   COLOUR fixed night palette: indigo #120f26, ink #f7eef3, pastel pink #ff8cbf (thread, actions), aqua #6fe3d6 (pins, labels), peach #ffbe9a (sun, details)
+   TYPE Bodoni Moda italic for titles (magazine elegance), Hanken Grotesk for text, Michroma for small labels
+   LAYOUT name over the sky, line on the horizon; chapters: label + title left, story right, line full-bleed; side rail; phone: stacked, lines swipe */
+:root{color-scheme:dark;--bg:#120f26;--bg2:#181433;--ink:#f7eef3;--mute:#b2a8c8;--line:#2e2853;--card:#1e1940;--red:#ff8cbf;--pink:#ff8cbf;--aqua:#6fe3d6;--peach:#ffbe9a;--pin:#6fe3d6}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;background:linear-gradient(180deg,#120f26 0%,#15112d 50%,#1a1334 100%) fixed,#120f26}
+body{margin:0;background:transparent;color:var(--ink);font:16.5px/1.65 'Hanken Grotesk',system-ui,sans-serif;overflow-x:clip}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+a{color:inherit}
+h1,h2,h3{font-family:'Bodoni Moda',Didot,'Times New Roman',serif;font-style:italic;font-weight:700;letter-spacing:-.02em;line-height:1;margin:0;text-wrap:balance}
+.g{padding-left:max(6vw,18px);padding-right:max(6vw,18px)}
+.hand,.lbl{font:400 12px/1.4 Michroma,'Arial Narrow',sans-serif;color:var(--aqua);letter-spacing:0}
+.nav{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding-block:14px;background:#120f26f2;border-bottom:1px solid #f7eef312}
+.brand{font:400 13px/1 Michroma,sans-serif;text-decoration:none;display:flex;gap:10px;align-items:center}
+.brand .ball{width:22px;height:22px;flex:none;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.btop{display:grid;place-items:center;padding:4px;margin:-4px;border-radius:50%}
+.btop:hover .ball,.btop:focus-visible .ball{transform:rotate(180deg)}
+.bname{background:none;border:0;padding:4px 0;color:inherit;font:inherit;cursor:pointer}
+.bname:hover,.bname:focus-visible{color:var(--pink)}
+.nav nav{display:flex;gap:8px}
+.pill{border:1px solid #f7eef366;background:#120f2699;border-radius:3px;min-height:42px;padding:0 16px;font-weight:500;font-size:15px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:border-color .2s,background .2s}
+.pill:hover{border-color:var(--aqua)}
+.pill.red{background:var(--pink);border-color:var(--pink);color:#1a0f24;font-weight:600}
+.pill.red:hover{background:var(--peach);border-color:var(--peach)}
+.pill:focus-visible,.it:focus-visible,.hint:focus-visible,.row:focus-visible,.dom>button:focus-visible,.rail a:focus-visible{outline:2px solid var(--aqua);outline-offset:3px}
+.bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--aqua),var(--pink),var(--peach));z-index:41;width:0}
+.rail{position:fixed;left:22px;top:50%;transform:translateY(-50%);z-index:30;display:none}
+.rail ol{list-style:none;margin:0;padding:0 0 0 18px;border-left:1px solid var(--line);position:relative}
+.rail a{display:block;font-size:13px;line-height:1.2;padding:7px 0;color:var(--mute);text-decoration:none;white-space:nowrap;max-width:0;overflow:hidden;transition:max-width .3s,color .2s}
+.rail:hover a,.rail a:focus-visible{max-width:220px}
+.rail a::before{content:"";position:absolute;left:-5px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:1px solid var(--mute);margin-top:3px}
+.rail a.on{color:var(--ink)}
+.rail a.on::before{border-color:var(--aqua);background:var(--aqua)}
+.rail .knob{position:absolute;left:-1.5px;width:2px;background:var(--pink);top:0;height:0}
+@media(min-width:1100px){.rail{display:block}}
+.bgfx{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.bgfx .g1,.bgfx .g2{position:absolute;width:70vmax;height:70vmax;border-radius:50%;}
+.bgfx .g1{right:-30vmax;top:-25vmax;background:radial-gradient(closest-side,#ff3fa438,#ff3fa400);will-change:transform}
+.bgfx .g2{left:-32vmax;bottom:-30vmax;background:radial-gradient(closest-side,#36e0ff26,#36e0ff00);will-change:transform}
+.bgfx .fl{position:absolute;left:0;right:0;bottom:0;height:26vh;perspective:260px;perspective-origin:50% 0;overflow:hidden;opacity:.28;-webkit-mask:linear-gradient(0deg,#000 20%,transparent);mask:linear-gradient(0deg,#000 20%,transparent)}
+.bgfx .fl i{position:absolute;left:-60%;right:-60%;bottom:0;height:300%;background-image:linear-gradient(#ff4fd8 1px,transparent 1px),linear-gradient(90deg,#ff4fd8 1px,transparent 1px);background-size:64px 64px;transform-origin:50% 100%;transform:rotateX(74deg)}
+.cglow{position:fixed;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;background:radial-gradient(closest-side,#ff5fbf1c,#ff5fbf00);pointer-events:none;z-index:-1;will-change:transform;opacity:0;transition:opacity .4s}
+.cglow.on{opacity:1}
+
+
+.sky{position:relative;overflow:hidden;background:radial-gradient(1.2px 1.2px at 7% 12%,#fffc,transparent),radial-gradient(1.2px 1.2px at 18% 38%,#fff8,transparent),radial-gradient(1.2px 1.2px at 29% 8%,#fffa,transparent),radial-gradient(1.2px 1.2px at 41% 27%,#fff7,transparent),radial-gradient(1.2px 1.2px at 53% 14%,#fffc,transparent),radial-gradient(1.2px 1.2px at 64% 33%,#fff8,transparent),radial-gradient(1.2px 1.2px at 72% 6%,#fffb,transparent),radial-gradient(1.2px 1.2px at 83% 22%,#fff9,transparent),radial-gradient(1.2px 1.2px at 91% 40%,#fff7,transparent),radial-gradient(1.2px 1.2px at 12% 55%,#fff6,transparent),radial-gradient(1.2px 1.2px at 47% 48%,#fff6,transparent),radial-gradient(1.2px 1.2px at 95% 10%,#fffb,transparent),linear-gradient(180deg,#0d0a22 0%,#181040 34%,#341463 58%,#6a1d74 78%,#b2357f 93%,#e0527f 100%)}
+.sun2{position:absolute;right:max(8vw,24px);bottom:0;width:clamp(210px,30vw,440px);aspect-ratio:1;transform:translateY(24%);pointer-events:none}
+.sun2 i{position:absolute;inset:0;border-radius:50%;background:linear-gradient(180deg,#ffe57e 0%,#ffb35c 36%,#ff6a98 70%,#e23fa6 100%);-webkit-mask:linear-gradient(180deg,#000 0 47%,#0000 47% 50%,#000 50% 56%,#0000 56% 60%,#000 60% 65%,#0000 65% 70%,#000 70% 74%,#0000 74% 80%,#000 80% 83%,#0000 83%);mask:linear-gradient(180deg,#000 0 47%,#0000 47% 50%,#000 50% 56%,#0000 56% 60%,#000 60% 65%,#0000 65% 70%,#000 70% 74%,#0000 74% 80%,#000 80% 83%,#0000 83%)}
+.sun2::before{content:"";position:absolute;inset:-35%;border-radius:50%;background:radial-gradient(closest-side,#ff8a7a66,#ff5fa000 70%)}
+.mtn{position:absolute;left:0;right:0;bottom:0;height:clamp(56px,8vw,120px);pointer-events:none;clip-path:polygon(0 100%,0 64%,5% 46%,10% 60%,16% 34%,23% 56%,29% 44%,35% 66%,42% 50%,49% 68%,56% 42%,63% 62%,69% 30%,76% 54%,82% 40%,88% 60%,94% 44%,100% 58%,100% 100%)}
+.mtn.e{background:#ff6fd8;transform:translateY(-2px);opacity:.85}
+.mtn.b{background:linear-gradient(180deg,#2b0f4f,#160a30)}
+.hero{z-index:2}
+.sky::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:#5ff4ff;box-shadow:0 0 10px 2px #5ff4ffaa,0 0 34px 6px #5ff4ff55;z-index:2}
+
+.hero{padding-top:clamp(92px,10vw,128px);padding-bottom:clamp(28px,4vw,48px);position:relative}
+.kick{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;position:relative}
+.kick span{font:400 12px/1.4 Michroma,sans-serif;color:var(--aqua)}
+.hero h1{position:relative;font-size:clamp(64px,min(13vw,19vh),210px);line-height:.88;letter-spacing:-.03em;margin-top:clamp(14px,2vw,28px);font-weight:600}
+.hero h1 .hball{display:inline-block;width:.2em;height:.2em;margin-left:.06em;vertical-align:baseline}
+.hero h1 em{font-style:normal;color:var(--pink)}
+.under{position:relative;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px;align-items:end;margin-top:clamp(18px,2.4vw,32px)}
+.under p{font-size:clamp(19px,1.8vw,23px);line-height:1.45;margin:0;max-width:32ch;color:#f3e6ee}
+.under .hand{justify-self:start;color:#1a0f24;background:var(--aqua);padding:8px 12px;border-radius:3px;display:inline-flex;gap:8px;align-items:center}
+.under .hand svg{width:14px;height:14px}
+ .sea{background:radial-gradient(70% 120px at 70% 0,#ff4fb455,transparent 70%),linear-gradient(180deg,#1b0c36 0%,#140c2e 50%,#120f26 100%);margin-top:0!important;padding-top:4px;position:relative;isolation:isolate}
+.floor{position:absolute;inset:0;z-index:-1;overflow:hidden;perspective:320px;perspective-origin:50% 0;pointer-events:none;-webkit-mask:linear-gradient(180deg,#000 35%,transparent 95%);mask:linear-gradient(180deg,#000 35%,transparent 95%)}
+.floor i{position:absolute;left:-60%;right:-60%;bottom:0;height:300%;background-image:linear-gradient(#ff4fd8cc 2px,transparent 2px),linear-gradient(90deg,#ff4fd8cc 2px,transparent 2px);background-size:70px 70px;transform-origin:50% 100%;transform:rotateX(74deg);animation:roll 2.6s linear infinite}
+.floor.off i{animation-play-state:paused}
+@keyframes roll{from{transform:rotateX(74deg) translateY(0)}to{transform:rotateX(74deg) translateY(70px)}}
+.line .scroller.canx{scrollbar-width:none;cursor:grab;overscroll-behavior-x:contain}
+.line .scroller.canx::-webkit-scrollbar{display:none}
+.line .scroller.drag{cursor:grabbing}
+.line .scroller.drag .it{pointer-events:none}
+.hasx .swipe{display:inline-block!important;margin-top:4px}
+.free .scroller{overflow-x:auto;scrollbar-width:none;cursor:grab;overscroll-behavior-x:contain}
+.free .scroller::-webkit-scrollbar{display:none}
+.free .scroller.drag{cursor:grabbing}
+.free .scroller.drag .it{pointer-events:none}
+.hnav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:4px;padding-bottom:26px}
+.harr{display:flex;gap:8px}
+.ha{width:46px;height:46px;border-radius:50%;border:1px solid #f7eef366;background:#120f26aa;color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:background .2s,border-color .2s}
+.ha:hover{background:var(--pink);border-color:var(--pink);color:#1a0f24}
+.ha:disabled{opacity:.3;cursor:default;background:#120f26aa;color:var(--ink);border-color:#f7eef366}
+.ha svg{width:20px;height:20px}
+.hbar{flex:1;height:2px;background:#f7eef322;max-width:320px;position:relative;border-radius:2px}
+.hbar i{position:absolute;left:0;top:0;bottom:0;background:var(--pink);border-radius:2px;box-shadow:0 0 8px #ff8cbf}
+.free .proto .pnote{display:none}.free .proto b{font-size:24px}.free .proto{padding:14px 12px}
+@media(max-width:600px){.free .proto .lbl{display:none}.free .proto b{font-size:20px;margin-top:10px}.free .proto .pgo{font-size:13px}}
+.knot{position:absolute;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#5ff4ff;box-shadow:0 0 10px #5ff4ff;pointer-events:none}
+.line{position:relative;margin-top:clamp(12px,2vw,24px)}
+.line .track{position:relative}
+.line svg.wire{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+.wire path{fill:none;stroke:var(--pink);stroke-width:2;stroke-linecap:round}.wire .gl,.drop .gl{stroke:#ff8cbf;stroke-width:8;opacity:.16}
+.it{position:absolute;padding:0;border:0;background:none;cursor:pointer;transform-origin:50% 0;text-align:left;}
+.it .fr{display:block;box-shadow:0 26px 40px -22px #000000d0;background:var(--card);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.it img{width:100%;height:100%;object-fit:cover}
+.it:hover .fr,.it:focus-visible .fr{transform:translateY(-6px);box-shadow:0 30px 44px -20px #000,0 0 0 1px #6fe3d655}
+.it .cap{display:block;margin-top:12px;font-weight:600;font-size:15px;line-height:1.25}
+.it .cap small{display:block;font-weight:400;color:var(--mute);font-size:13.5px}
+.it .clip{position:absolute;left:50%;top:-16px;width:16px;height:40px;margin-left:-8px;z-index:2;filter:drop-shadow(0 2px 2px #0008)}
+.proto{display:flex!important;flex-direction:column;gap:10px;padding:18px 16px;border:2px solid #f7eef3;border-radius:26px;background:linear-gradient(180deg,#2a1550,#1a1236)!important;position:relative}
+.proto::before{content:"";position:absolute;top:8px;left:50%;width:34%;height:6px;margin-left:-17%;border-radius:4px;background:#f7eef355}
+.proto .lbl{margin-top:14px}
+.proto b{font:italic 700 30px/1 'Bodoni Moda',serif}
+.proto .pnote{font-size:14px;line-height:1.45;color:var(--mute)}
+.proto .pgo{margin-top:auto;font-weight:600;color:var(--pink)}
+.card{padding:20px;display:flex!important;flex-direction:column;gap:10px;height:auto!important;min-height:var(--h);background:#f7eef3!important;color:#1a1430}
+.card b{font:italic 700 28px/1 'Bodoni Moda',serif}
+.card p{margin:0;font-size:14.5px;line-height:1.5;color:#4a4060}
+.polar{padding:10px 10px 36px!important;position:relative;background:#fbf7f2!important}
+.polar span{position:absolute;bottom:10px;left:0;right:0;text-align:center;color:#6a5a7a!important}
+.tool{padding:6px 4px;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;height:100%;background:transparent!important;box-shadow:none!important;border:0}
+.tool i{width:52px;height:52px;border-radius:12px;display:grid;place-items:center;font:700 21px/1 'Hanken Grotesk',sans-serif;font-style:normal;border:0;box-shadow:0 10px 22px -10px #000}
+.tool b{font-weight:600;font-size:15px;line-height:1.2}
+.tool small{color:var(--mute);font-size:13px;display:block}
+.drop{height:clamp(70px,9vw,120px);position:relative}
+.drop svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+
+.ch{padding-top:clamp(20px,3vw,40px);position:relative}
+main{overflow-x:clip}
+.head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(20px,5vw,80px);align-items:start}
+.yrs{display:block;font:400 12px/1.4 Michroma,sans-serif;color:var(--aqua);margin-bottom:14px}
+.ch h2{font-size:clamp(44px,6vw,92px)}
+.story{font-size:clamp(17px,1.4vw,19.5px);line-height:1.65;margin:6px 0 0;max-width:54ch;color:#e9dfea}
+.story p{margin:0 0 14px}
+.hint{border:0;background:none;padding:0;cursor:pointer;font-weight:600;color:var(--ink);text-decoration:underline 1px var(--aqua);text-underline-offset:5px}
+.hint::after{content:"+";display:inline-grid;place-items:center;width:16px;height:16px;margin-left:5px;border-radius:50%;border:1px solid var(--aqua);color:var(--aqua);font-size:12px;line-height:1;vertical-align:2px}
+.hint:hover::after{background:var(--aqua);color:#120f26}
+.pop{position:absolute;z-index:45;width:min(330px,calc(100vw - 32px));background:#f7eef3;color:#1a1430;border-radius:4px;padding:16px 18px;font-size:15px;line-height:1.5;box-shadow:0 24px 44px -16px #000;animation:pop .2s ease-out;border-top:3px solid var(--pink)}
+.pop b{display:block;font:italic 700 21px/1.1 'Bodoni Moda',serif;margin-bottom:6px}
+.pop small{display:block;font:400 11px/1.4 Michroma,sans-serif;color:#b0457a;margin-bottom:8px}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}}
+.note{position:absolute;pointer-events:none;white-space:nowrap;padding-left:14px;border-left:1px solid var(--aqua)}
+.hz{position:relative}
+.hz .sticky{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding-top:64px;padding-bottom:12px}
+.hz .head{margin-bottom:4px}
+.hz .line{margin:0}
+.hz .count{font:400 12px/1 Michroma,sans-serif;color:var(--mute);margin-top:14px}
+.doms{margin-top:clamp(28px,4vw,48px);border-top:1px solid var(--mute)}
+.mapw{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:center;margin:clamp(24px,3vw,40px) 0 0}
+.mapbox{position:relative;border:1px solid var(--line);border-radius:14px;background:#120d2acc;overflow:hidden;aspect-ratio:1/1;max-height:560px}
+.fmap{width:100%;height:100%;display:block;touch-action:none;cursor:grab}
+.fmap .ml{font:400 13px Michroma,sans-serif;fill:#f7eef3;paint-order:stroke;stroke:#120d2a;stroke-width:4px}
+.fmap .city text{font:500 12px 'Hanken Grotesk',sans-serif;fill:#f7eef3b3;paint-order:stroke;stroke:#120d2a;stroke-width:3px}
+.fmap .city.c2{opacity:0;transition:opacity .3s}
+.fmap.zin .city.c2{opacity:1}
+.fmap .dots{transition:opacity .3s}.fmap.zin .dots{opacity:0}
+.fmap .pin text{font-size:14px}
+.fmap .pin{cursor:pointer;outline:none}
+.fmap .pin:focus-visible circle:last-of-type{stroke:#fff;stroke-width:2}
+.fmap .pul{transform-origin:0 0;animation:pul 2s ease-out infinite}
+@keyframes pul{from{transform:scale(1);opacity:1}to{transform:scale(3.4);opacity:0}}
+.fmap .route{animation:dash 1.6s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-26}}
+.mapctl{position:absolute;right:12px;bottom:12px;display:flex;gap:8px}
+.mapctl .ha{font:400 12px Michroma,sans-serif}
+.mapinfo h3{font-size:clamp(30px,3.6vw,46px);margin:10px 0 12px}
+.mapinfo p{color:var(--mute);margin:0 0 18px;max-width:42ch}
+.mapbtns{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.mapbtns .pill[aria-pressed=true]{border-color:var(--aqua);color:var(--aqua)}
+@media(max-width:820px){.mapw{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.fmap .pul,.fmap .route{animation:none}}
+.alt{padding-top:clamp(48px,6vw,90px);padding-bottom:clamp(20px,3vw,40px)}
+.altcard{position:relative;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(24px,4vw,64px);padding:clamp(24px,4vw,56px);border-radius:18px;background:linear-gradient(135deg,#2a1450f2,#170f33f2 55%,#12223af2);border:1px solid #ff8cbf55;box-shadow:0 0 0 1px #6fe3d61f inset,0 30px 60px -30px #000,0 0 50px -20px #ff8cbf66}
+.altbig b{display:block;font:italic 700 clamp(84px,11vw,170px)/.9 'Bodoni Moda',serif;color:var(--pink);margin:12px 0 6px;text-shadow:0 0 30px #ff8cbf55}
+.altsub{display:block;font-size:clamp(18px,1.6vw,22px);line-height:1.35;max-width:16ch}
+.altline{position:relative;margin-top:28px;height:2px;background:#f7eef333;display:flex;justify-content:space-between}
+.altline i{position:absolute;inset:0;background:linear-gradient(90deg,var(--aqua),var(--pink));box-shadow:0 0 10px #ff8cbf}
+.altline span{position:relative;top:12px;font:400 11px/1 Michroma,sans-serif;color:var(--mute)}
+.altbody h2{font-size:clamp(32px,4vw,54px);margin-bottom:14px}
+.altp{font-size:clamp(17px,1.4vw,19px);color:#e9dfea;margin:0 0 20px;max-width:56ch}
+.altp b{color:var(--ink)}
+.altlist{list-style:none;padding:0;margin:0 0 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 24px}
+.altlist li{display:flex;flex-direction:column;gap:2px;padding:12px 0;border-top:1px solid #f7eef322;font-weight:500}
+.altp2{color:var(--mute);font-size:15.5px;margin:0 0 22px;max-width:60ch}
+.seek{padding-top:clamp(40px,5vw,80px);padding-bottom:clamp(20px,3vw,40px)}
+.seek h2{font-size:clamp(32px,4vw,54px);margin:10px 0 24px}
+.seekgrid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:16px}
+.seekc{padding:clamp(22px,3vw,36px);border-radius:18px;background:linear-gradient(135deg,#2a1450e6,#170f33e6);border:1px solid #f7eef322}
+.seekc.main{border-color:#ff8cbf66;box-shadow:0 0 50px -24px #ff8cbf88}
+.seekc h3{font:italic 700 clamp(28px,3vw,42px)/1.05 'Bodoni Moda',serif;color:var(--pink);margin:10px 0 12px}
+.seekc p{margin:0;color:#e9dfea;font-size:clamp(16px,1.3vw,18px);max-width:54ch}
+.seekc .dates{font:600 clamp(20px,2vw,26px)/1.2 'Hanken Grotesk',sans-serif;color:var(--ink)}
+.seekfoot{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:18px}
+.seekfoot .altflag{margin-top:0}
+@media(max-width:820px){.seekgrid{grid-template-columns:1fr}}
+.altflag{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 14px;border-radius:99px;background:#ff8cbf22;border:1px solid #ff8cbf88;color:var(--ink);text-decoration:none;font-weight:600;font-size:15px}
+.altflag:hover{background:var(--pink);color:#1a0f24}
+.altflag i{width:8px;height:8px;border-radius:50%;background:var(--pink);box-shadow:0 0 8px var(--pink)}
+@media(max-width:820px){.altcard{grid-template-columns:1fr}}
+.prog{margin-top:clamp(36px,5vw,64px)}
+.proghead{max-width:640px;margin-bottom:22px}
+.proghead h3{font-size:clamp(30px,3.6vw,50px);margin:8px 0 10px}
+.proghead p{margin:0;color:var(--mute);font-size:17px}
+.progrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.pc{position:relative;display:flex;flex-direction:column;gap:10px;padding:22px 20px 20px;border-radius:14px;background:linear-gradient(160deg,#241246e6,#150f30e6);border:1px solid #f7eef31f;transition:border-color .25s,transform .25s}
+.pc:hover{border-color:#ff8cbf88;transform:translateY(-3px)}
+.pc .pn{font:400 11px/1 Michroma,sans-serif;color:var(--aqua)}
+.pc h4{margin:0;font:italic 700 clamp(22px,2vw,28px)/1.1 'Bodoni Moda',serif;color:var(--ink)}
+.pc p{margin:0;color:var(--mute);font-size:15.5px;line-height:1.5}
+.pc .apps{margin-top:auto;padding-top:6px}
+.proghint{display:none}
+@media(max-width:700px){.progrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 calc(-1 * max(6vw,18px));padding:0 max(6vw,18px) 6px;scrollbar-width:none}.progrid::-webkit-scrollbar{display:none}.pc{flex:0 0 78%;scroll-snap-align:start}.proghint{display:block;margin:12px 0 0;font:400 11px/1 Michroma,sans-serif;color:var(--aqua)}}
+.dom{border-bottom:1px solid var(--line)}
+.dom>button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:clamp(16px,2vw,24px) 0;background:none;border:0;cursor:pointer;text-align:left}
+.dom h3{font-size:clamp(28px,3.4vw,48px);transition:color .2s}
+.dom>button:hover h3{color:var(--pink)}
+.dom .pl{flex:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--mute);display:grid;place-items:center;transition:transform .3s,background .2s}
+.dom .pl svg{width:16px;height:16px}
+.dom[open] .pl{transform:rotate(45deg);background:var(--aqua);border-color:var(--aqua);color:#120f26}
+.dom .body{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;padding:0 0 24px;max-width:1100px}
+.dom .body p{margin:0;color:var(--mute);font-size:17px;max-width:56ch}
+.dom .body[hidden]{display:none}
+.dom .thumbs{display:flex;gap:8px}
+.apps{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.app{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;padding:4px 12px 4px 4px;border:1px solid var(--line);border-radius:4px}
+.app i{width:28px;height:28px;border-radius:6px;display:grid;place-items:center;font:700 12px/1 'Hanken Grotesk',sans-serif;font-style:normal;border:0}
+.dom .thumbs button{width:64px;height:80px;border:0;padding:0;cursor:pointer;background:var(--card);box-shadow:0 8px 16px -10px #000;transition:transform .2s}
+.dom .thumbs button:hover{transform:translateY(-4px) rotate(-2deg)}
+.dom .thumbs img{width:100%;height:100%;object-fit:cover}
+.dom .thumbs .tproto{width:auto;min-width:96px;padding:0 12px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;background:linear-gradient(150deg,#2a1450,#12223a);border:1px solid #6fe3d655;color:var(--ink);font:600 14px/1.1 'Hanken Grotesk',sans-serif;text-align:left}
+.dom .thumbs .tproto small{font:400 9px/1 Michroma,sans-serif;color:var(--aqua)}
+.dom .thumbs .tproto span{color:var(--pink)}
+.end{padding-block:clamp(60px,8vw,120px) 32px;position:relative}
+.end h2{font-size:clamp(52px,9vw,140px);line-height:.95}
+.end h2 em{font-style:normal;color:var(--pink)}
+.cgrid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:end;margin-top:clamp(28px,4vw,48px)}
+.mail{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.mail a{font:italic 600 clamp(16px,5.2vw,42px)/1.15 'Bodoni Moda',serif;white-space:nowrap;max-width:100%;text-decoration:none;border-bottom:1px solid var(--pink);padding-bottom:4px}
+.mail a:hover{color:var(--pink)}
+.clist div{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-top:1px solid var(--line)}
+.clist span{color:var(--mute)}
+.clist b{font-weight:600;white-space:nowrap}
+.dw .rels{display:grid;gap:10px;margin-top:18px}
+.dw .rel{display:flex;gap:14px;align-items:center;width:100%;padding:10px;border:1px solid #ff8cbf66;border-radius:10px;background:#ff8cbf14;color:var(--ink);text-align:left;cursor:pointer;font:inherit;transition:background .2s,border-color .2s}
+.dw .rel:hover,.dw .rel:focus-visible{background:#ff8cbf2a;border-color:var(--pink)}
+.dw .rel img{width:60px;height:76px;object-fit:cover;flex:none;box-shadow:0 8px 16px -10px #000}
+.dw .rel small{display:block;font:400 10px/1.4 Michroma,sans-serif;color:var(--aqua)}
+.dw .rel b{display:block;font:italic 700 22px/1.15 'Bodoni Moda',serif;margin:2px 0}
+.dw .rel em{font-style:normal;color:var(--pink);font-weight:600;font-size:14px}
+.clist .cwide{flex-direction:column;gap:6px}
+.clist .cwide b{white-space:normal;line-height:1.4}
+.clist .cwide small{font-weight:400;color:var(--mute);font-size:.9em}
+.clist .cwide em{font-style:normal;font-weight:400;color:var(--mute)}
+.clist .cwide .dt{color:var(--pink);white-space:nowrap}
+@media(max-width:600px){.clist b{white-space:normal;text-align:right}.clist .cwide b{text-align:left}}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;color:var(--mute);font-size:14px;margin-top:clamp(40px,6vw,80px);padding-top:18px;position:relative}
+.foot::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--aqua),var(--pink),var(--peach))}
+dialog{border:0;padding:0;max-width:none;max-height:none;color:var(--ink);background:transparent}
+dialog::backdrop{background:#070513cc}
+.drawer{margin:0 0 0 auto;height:100svh;width:min(640px,100vw);background:#17132f;overflow:auto;animation:slide .45s cubic-bezier(.2,.8,.2,1);border-left:1px solid var(--line)}
+@keyframes slide{from{transform:translateX(100%)}}
+.dw{padding:20px clamp(18px,3vw,36px) 36px}
+.dtop{display:flex;justify-content:space-between;align-items:center;gap:12px;position:sticky;top:0;background:#17132f;padding:14px 0;z-index:2}
+.dtop>span{font:400 12px/1.4 Michroma,sans-serif;color:var(--aqua)}
+.x{width:44px;height:44px;border-radius:50%;border:1px solid var(--mute);background:none;cursor:pointer;display:grid;place-items:center}
+.x:hover{border-color:var(--pink);color:var(--pink)}
+.x svg{width:20px;height:20px}
+.dw h3{font-size:clamp(40px,5vw,60px);margin:6px 0 20px}
+.big{background:#0e0b20;display:grid;place-items:center;padding:16px;cursor:zoom-in;border:0;width:100%}
+.big img{max-height:62svh;width:auto;max-width:100%;object-fit:contain}
+.strip{display:flex;gap:8px;margin-top:10px;overflow-x:auto;padding-bottom:4px}
+.strip button{flex:none;width:64px;height:64px;padding:0;border:2px solid transparent;cursor:pointer;background:var(--card)}
+.strip button[aria-current=true]{border-color:var(--aqua)}
+.strip img{width:100%;height:100%;object-fit:cover}
+.dw dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 18px;margin:22px 0 0;padding:18px 0;border-block:1px solid var(--line);font-size:15px}
+.dw dt{color:var(--mute)}.dw dd{margin:0}
+.prof .ptop{display:grid;grid-template-columns:140px minmax(0,1fr);gap:20px;align-items:center;margin:8px 0 20px}
+.prof .ptop img{width:140px;aspect-ratio:.83;object-fit:cover;border:6px solid #fbf7f2;box-shadow:0 18px 30px -16px #000}
+.prof .ptop p{margin:10px 0 0;color:var(--mute)}
+.prof h4{font:400 12px/1.4 Michroma,sans-serif;color:var(--aqua);margin:28px 0 6px}
+.ptl{list-style:none;margin:0;padding:0}
+.ptl li{padding:14px 0 14px 18px;border-left:1px solid var(--pink);position:relative}
+.ptl li::before{content:"";position:absolute;left:-5px;top:20px;width:9px;height:9px;border-radius:50%;background:var(--pink)}
+.ptl b{display:block;font:italic 700 21px/1.2 'Bodoni Moda',serif;margin:4px 0}
+.ptl p{margin:0;color:var(--mute);font-size:15px}
+.dw dd a{color:var(--ink)}
+@media(max-width:600px){.prof .ptop{grid-template-columns:100px minmax(0,1fr)}.prof .ptop img{width:100px}}
+.why{display:grid;grid-template-columns:9.5em minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.why .lbl{padding-top:5px}
+.why p{margin:0;font-size:17px;line-height:1.6;color:#e9dfea}
+@media(max-width:600px){.why{grid-template-columns:1fr;gap:4px}}
+.dw .desc{font-size:17.5px;line-height:1.65;white-space:pre-line;color:#e9dfea}
+.nextp{display:flex;justify-content:space-between;gap:12px;margin-top:28px;flex-wrap:wrap}
+.zoom{position:fixed;inset:0;z-index:70;background:#070513f5;display:grid;place-items:center;cursor:zoom-out;padding:16px;border:0;width:100%}
+.zoom img{max-width:100%;max-height:100%;object-fit:contain}
+.idx{width:100vw;height:100svh;background:linear-gradient(180deg,#120f26,#241640 70%,#3a1f4f);color:var(--ink);overflow:auto;animation:fade .3s}
+@keyframes fade{from{opacity:0}}
+.idx .wrap{padding:20px max(6vw,18px) 48px}
+.idx .dtop{background:#120f26}
+.cats{display:flex;flex-wrap:wrap;gap:4px 18px;margin:12px 0 18px}
+.cats button{background:none;border:0;cursor:pointer;color:var(--mute);font-weight:500;padding:8px 0;min-height:40px}
+.cats button[aria-pressed=true]{color:var(--ink);text-decoration:underline 1px var(--aqua);text-underline-offset:7px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:baseline;width:100%;padding:14px 0;background:none;border:0;border-top:1px solid #f7eef31f;cursor:pointer;text-align:left;color:var(--ink)}
+.row b{font:italic 600 clamp(28px,4.6vw,60px)/1.05 'Bodoni Moda',serif;transition:color .2s,transform .3s}
+.row span{color:var(--mute);font-size:15px;white-space:nowrap}
+.row:hover b{color:var(--pink);transform:translateX(10px)}
+.peek{position:fixed;z-index:80;width:200px;pointer-events:none;opacity:0;transition:opacity .2s;transform:translate(-50%,-110%) rotate(-3deg);box-shadow:0 20px 40px -12px #000}
+.cur{position:fixed;z-index:90;left:0;top:0;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:50%;background:var(--aqua);color:#120f26;display:grid;place-items:center;font:400 11px/1 Michroma,sans-serif;pointer-events:none;transform:scale(0);transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.cur.on{transform:scale(1)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--aqua);color:#120f26;padding:10px 18px;border-radius:3px;z-index:95;font-weight:600}
+.sm{display:none}
+@media(max-width:820px){.head,.under,.cgrid{grid-template-columns:1fr}.dom .body{grid-template-columns:1fr}}
+@media(max-width:899px){.line .scroller{overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity}.line .scroller::-webkit-scrollbar{display:none}.swipe{display:inline-block;margin-top:4px}}
+@media(min-width:900px){.swipe{display:none}}
+@media(max-width:600px){.sun2{right:-10vw;width:56vw}.mtn{height:48px}.kick span,.under p{text-shadow:0 1px 12px #120f26}.lg{display:none}.sm{display:inline}.nav .pill{padding:0 14px}.card{padding:14px}.card b{font-size:22px}.card p{font-size:13px}.it .cap{font-size:14px}.row{grid-template-columns:1fr;gap:2px}.sea::before{right:-8vw;width:50vw}.under p{text-shadow:0 1px 14px #120f26cc}}
+@media(pointer:coarse){.cur{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.floor i{animation:none}.drawer,.idx,.pop{animation:none}.it .fr,.row b{transition:none}}
+
+html.introlock,html.introlock body{overflow:hidden}
+.intro{position:fixed;inset:0;z-index:200;overflow:hidden;background:#0d0a22;display:grid;grid-template-rows:58% 42%;transition:opacity .7s ease,visibility .7s}
+.intro.out{opacity:0;visibility:hidden;pointer-events:none}
+.i-sky{position:relative;overflow:hidden;background:radial-gradient(1.2px 1.2px at 12% 18%,#fffc,transparent),radial-gradient(1px 1px at 28% 32%,#fff9,transparent),radial-gradient(1.4px 1.4px at 44% 10%,#fffb,transparent),radial-gradient(1px 1px at 63% 24%,#fff8,transparent),radial-gradient(1.2px 1.2px at 78% 14%,#fffa,transparent),radial-gradient(1px 1px at 90% 34%,#fff7,transparent),linear-gradient(180deg,#0b0820 0%,#1a0f42 30%,#3d1466 55%,#7c1f78 76%,#c9397f 92%,#f05a83 100%)}
+.i-sun{position:absolute;left:50%;bottom:0;width:min(46vh,62vw);aspect-ratio:1;transform:translate(-50%,26%)}
+.i-sun i{position:absolute;inset:0;border-radius:50%;background:linear-gradient(180deg,#ffe97f 0%,#ffb35a 36%,#ff6a98 70%,#e23fa6 100%);-webkit-mask:linear-gradient(180deg,#000 0 46%,#0000 46% 49%,#000 49% 55%,#0000 55% 59%,#000 59% 64%,#0000 64% 69%,#000 69% 73%,#0000 73% 79%,#000 79% 82%,#0000 82%);mask:linear-gradient(180deg,#000 0 46%,#0000 46% 49%,#000 49% 55%,#0000 55% 59%,#000 59% 64%,#0000 64% 69%,#000 69% 73%,#0000 73% 79%,#000 79% 82%,#0000 82%)}
+.i-sun::before{content:"";position:absolute;inset:-40%;border-radius:50%;background:radial-gradient(closest-side,#ff8a7a77,#ff5fa000 70%)}
+.i-mtn{position:absolute;left:0;right:0;bottom:0;height:clamp(40px,9vh,110px);clip-path:polygon(0 100%,0 60%,7% 42%,13% 58%,20% 30%,28% 55%,34% 46%,41% 70%,50% 100%,59% 70%,66% 44%,72% 58%,80% 28%,87% 56%,93% 40%,100% 58%,100% 100%)}
+.i-mtn.e{background:#ff6fd8;transform:translateY(-2px)}.i-mtn.b{background:linear-gradient(#2b0f4f,#160a30)}
+.i-sky::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:#5ff4ff;box-shadow:0 0 12px 2px #5ff4ffaa,0 0 40px 8px #5ff4ff55}
+.i-ground{position:relative;overflow:hidden;background:linear-gradient(180deg,#1d0c3a,#0d0a22);perspective:300px;perspective-origin:50% 0}
+.i-grid,.i-road{position:absolute;left:50%;bottom:0;transform-origin:50% 100%}
+.i-grid{width:400%;height:400%;margin-left:-200%;background-image:linear-gradient(#ff4fd888 2px,transparent 2px),linear-gradient(90deg,#ff4fd888 2px,transparent 2px);background-size:90px 90px;transform:rotateX(78deg);animation:iroll 1.1s linear infinite}
+.i-road{width:min(70vw,620px);height:400%;margin-left:calc(min(70vw,620px) / -2);background:linear-gradient(90deg,#ff5fd8 0 1.5%,#120a26 1.5% 98.5%,#ff5fd8 98.5%);transform:rotateX(78deg);box-shadow:0 0 30px #ff5fd866}
+.i-road i{position:absolute;left:50%;top:0;bottom:-160px;width:1.6%;margin-left:-.8%;background:repeating-linear-gradient(180deg,#5ff4ff 0 70px,transparent 70px 160px);animation:idash .55s linear infinite;box-shadow:0 0 12px #5ff4ff}
+@keyframes iroll{to{background-position:0 -90px}}
+@keyframes idash{from{transform:translateY(-160px)}to{transform:translateY(0)}}
+.i-ground::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0d0a2200 0%,#0d0a2200 40%,#0d0a2299 100%);pointer-events:none}
+.i-car{position:absolute;left:50%;bottom:6%;width:min(52vw,440px);transform:translateX(-50%);z-index:3;filter:drop-shadow(0 18px 20px #000a)}
+.i-car svg{display:block;width:100%;height:auto;animation:ibob .5s ease-in-out infinite alternate}
+@keyframes ibob{to{transform:translateY(-2px)}}
+.i-car .tail{filter:drop-shadow(0 0 6px #ff2d75) drop-shadow(0 0 16px #ff2d75)}
+.i-car .nitro{opacity:0;transform-origin:center;transform-box:fill-box}
+.i-text{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding:clamp(48px,11vh,110px) 20px 0;pointer-events:none}
+.i-text .lbl{color:var(--aqua)}
+.i-text h1{font:italic 700 clamp(54px,10vw,140px)/.92 'Bodoni Moda',Didot,serif;letter-spacing:-.03em;color:#f7eef3;margin:12px 0 10px;text-shadow:0 0 40px #ff5fb488}
+.i-text p{margin:0 0 26px;color:#f3e3ee;font-size:clamp(15px,1.6vw,19px);text-shadow:0 1px 12px #0d0a22}
+.i-go{pointer-events:auto;position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:12px;padding:7px 7px 7px 20px;border-radius:99px;border:1px solid #ffffff38;background:#140a2a73;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;font:500 15px/1 'Hanken Grotesk',sans-serif;letter-spacing:.01em;cursor:pointer;box-shadow:0 8px 30px -10px #ff4fb488,inset 0 1px 0 #ffffff22;transition:border-color .25s,box-shadow .25s,transform .25s}
+.i-go b{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#ff8cbf,#c45cff);box-shadow:0 0 16px #ff5fb499;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.i-go b svg{width:16px;height:16px;color:#1a0f24}
+.i-go::after{content:"";position:absolute;top:0;bottom:0;left:-40%;width:30%;background:linear-gradient(100deg,#fff0,#ffffff30,#fff0);transform:skewX(-20deg);animation:ishine 3.2s ease-in-out infinite}
+.i-go:hover,.i-go:focus-visible{border-color:#ff8cbf;box-shadow:0 10px 40px -8px #ff4fb4cc,inset 0 1px 0 #ffffff33;transform:translateY(-1px);outline:none}
+.i-go:hover b,.i-go:focus-visible b{transform:translateX(3px)}
+.i-hint{display:block;margin-top:12px;font:400 10px/1 Michroma,sans-serif;color:#f7eef3a6;pointer-events:none}
+@media (hover:none){.i-hint{display:none}}
+@keyframes ishine{0%,60%{left:-40%}100%{left:130%}}
+.i-snd{position:absolute;left:16px;bottom:16px;z-index:5;display:grid;place-items:center;width:34px;height:34px;padding:0;border-radius:50%;border:1px solid #f7eef333;background:#120f2666;color:#f7eef3cc;font:400 10px/1 Michroma,sans-serif;cursor:pointer;transition:border-color .2s,color .2s}
+.i-snd:hover,.i-snd:focus-visible{border-color:var(--pink);color:#fff;outline:none}
+.i-snd svg{width:16px;height:16px}
+.i-snd span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.i-snd .x{display:none}.i-snd.off .x{display:inline}.i-snd.off .w1,.i-snd.off .w2{display:none}
+.i-snd[hidden]{display:none}
+.i-skip{position:absolute;right:16px;bottom:16px;z-index:5;background:none;border:0;color:#f7eef399;font:400 11px Michroma,sans-serif;cursor:pointer;padding:10px}
+.i-skip:hover{color:#fff}
+.i-lines{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0}
+.i-lines i{position:absolute;left:50%;top:58%;width:2px;height:22vh;background:linear-gradient(#fff0,#ffffffcc);transform-origin:50% 0}
+.intro.go .i-grid{animation-duration:.18s}
+.intro.go .i-road i{animation-duration:.09s}
+.intro.go .i-text{transition:opacity .35s,transform .5s;opacity:0;transform:translateY(-30px)}
+.intro.go .i-car{animation:izoom 1.25s cubic-bezier(.55,0,.75,.2) .25s forwards}
+.intro.go .i-car svg{animation:ishake .06s linear infinite}
+.intro.go .nitro{animation:iflame .08s linear infinite alternate;opacity:1}
+.intro.go .i-lines{opacity:1;transition:opacity .3s .15s}
+.intro.go .i-lines i{animation:iline .35s linear infinite}
+.intro.go .i-sun{transition:transform 1.4s ease-in;transform:translate(-50%,26%) scale(1.15)}
+@keyframes izoom{0%{transform:translateX(-50%)}25%{transform:translateX(-50%) translateY(10px) scale(1.04)}100%{transform:translateX(-50%) translateY(-44vh) scale(.05)}}
+@keyframes ishake{50%{transform:translate(1px,-1px)}}
+@keyframes iflame{from{transform:scale(.85,.9)}to{transform:scale(1.15,1.2)}}
+@keyframes iline{from{transform:var(--r) translateY(4vh) scaleY(.4);opacity:0}50%{opacity:1}to{transform:var(--r) translateY(40vh) scaleY(1.4);opacity:0}}
+@media(max-width:600px){.intro{grid-template-rows:55% 45%}.i-car{width:78vw;bottom:8%}.i-road{width:86vw;margin-left:-43vw}}
+@media(prefers-reduced-motion:reduce){.i-grid,.i-road i,.i-car svg,.i-go{animation:none!important}.intro.go .i-car{animation:none}}
+/* pendant le chargement de la 3D : fond sombre uni, l'ancienne scène dessinée n'apparaît qu'en secours (sans WebGL) */
+.intro:not(.has3d):not(.nofx) .i-sky,.intro:not(.has3d):not(.nofx) .i-ground,.intro:not(.has3d):not(.nofx) .i-car,.intro:not(.has3d):not(.nofx) .i-lines{visibility:hidden}
+.intro:not(.has3d):not(.nofx){background:radial-gradient(120% 80% at 50% 38%,#2a1048 0%,#120a2a 55%,#07050f 100%)}
+.i-3d{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;opacity:0;transition:opacity .9s ease}
+.intro.has3d .i-3d{opacity:1}
+.intro.has3d .i-sky,.intro.has3d .i-ground,.intro.has3d .i-car,.intro.has3d .i-lines{visibility:hidden}
+.intro.has3d .i-text{text-shadow:0 2px 20px #0b0820}
+</style></head><body>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<div class="intro" id="intro" role="dialog" aria-label="Page d'entrée">
+<div class="i-sky"><div class="i-sun"><i></i></div><div class="i-mtn e"></div><div class="i-mtn b"></div></div>
+<div class="i-ground"><div class="i-grid"></div><div class="i-road"><i></i></div></div>
+<div class="i-lines"><i style="--r:rotate(-80deg)"></i><i style="--r:rotate(-62deg)"></i><i style="--r:rotate(-48deg)"></i><i style="--r:rotate(-34deg)"></i><i style="--r:rotate(-20deg)"></i><i style="--r:rotate(-8deg)"></i><i style="--r:rotate(8deg)"></i><i style="--r:rotate(20deg)"></i><i style="--r:rotate(34deg)"></i><i style="--r:rotate(48deg)"></i><i style="--r:rotate(62deg)"></i><i style="--r:rotate(80deg)"></i><i style="--r:rotate(-70deg)"></i><i style="--r:rotate(70deg)"></i><i style="--r:rotate(-55deg)"></i><i style="--r:rotate(55deg)"></i><i style="--r:rotate(-27deg)"></i><i style="--r:rotate(27deg)"></i></div>
+<div class="i-car"><svg viewBox="0 0 400 210" aria-hidden="true"><defs>
+<linearGradient id="cb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a1a82"/><stop offset="1" stop-color="#1a0a33"/></linearGradient>
+<linearGradient id="cw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff8cbf"/><stop offset=".5" stop-color="#5a2a8a"/><stop offset="1" stop-color="#1a0a33"/></linearGradient>
+<radialGradient id="fl"><stop offset="0" stop-color="#ffffff"/><stop offset=".3" stop-color="#7ff6ff"/><stop offset=".65" stop-color="#5f7bff"/><stop offset="1" stop-color="#ff4fd8" stop-opacity="0"/></radialGradient></defs>
+<ellipse cx="200" cy="196" rx="182" ry="12" fill="#000" opacity=".55"/>
+<rect x="38" y="138" width="66" height="56" rx="12" fill="#0b0714"/><rect x="296" y="138" width="66" height="56" rx="12" fill="#0b0714"/>
+<path d="M92 92 L128 44 Q134 36 146 36 L254 36 Q266 36 272 44 L308 92 Z" fill="#200d3d"/>
+<path d="M110 88 L138 50 L262 50 L290 88 Z" fill="url(#cw)" opacity=".85"/>
+<path d="M26 152 L26 112 Q28 94 58 90 L342 90 Q372 94 374 112 L374 152 Q374 164 360 164 L40 164 Q26 164 26 152 Z" fill="url(#cb)"/>
+<path d="M58 90 L342 90 Q372 94 374 112" fill="none" stroke="#ff8cbf" stroke-width="2" opacity=".8"/><path d="M26 112 Q28 94 58 90" fill="none" stroke="#ff8cbf" stroke-width="2" opacity=".8"/>
+<rect x="36" y="78" width="328" height="9" rx="3" fill="#2a1150" stroke="#ff8cbf" stroke-width="1.5"/><rect x="70" y="86" width="8" height="8" fill="#2a1150"/><rect x="322" y="86" width="8" height="8" fill="#2a1150"/>
+<g class="tail"><rect x="40" y="104" width="320" height="16" rx="5" fill="#ff2d75"/><rect x="46" y="109" width="308" height="3" rx="1.5" fill="#ffd0e0"/></g>
+<rect x="166" y="128" width="68" height="22" rx="3" fill="#f7eef3"/><text x="200" y="144" text-anchor="middle" font-family="Michroma,Arial,sans-serif" font-size="11" fill="#1a0f24">T.COCCO</text>
+<circle cx="122" cy="166" r="8" fill="#15101f" stroke="#8a7fa3" stroke-width="2"/><circle cx="278" cy="166" r="8" fill="#15101f" stroke="#8a7fa3" stroke-width="2"/>
+<ellipse class="nitro" cx="122" cy="174" rx="22" ry="16" fill="url(#fl)"/><ellipse class="nitro" cx="278" cy="174" rx="22" ry="16" fill="url(#fl)"/>
+</svg></div>
+<div class="i-text"><span class="lbl">Portfolio</span><h1>Tonio Cocco</h1><p>Communication visuelle et réalisation graphique</p>
+<button class="i-go" id="igo">Aller au portfolio <b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></b></button><span class="i-hint">ou appuyez sur Entrée</span></div>
+<button class="i-skip" id="iskip">Passer l'intro</button><button class="i-snd off" id="isnd" hidden aria-label="Activer ou couper le son de l'intro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" stroke="none"/><path class="w1" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" d="M18.5 7a7.5 7.5 0 0 1 0 10"/><path class="x" d="M16 9l5 6M21 9l-5 6"/></svg><span>Activer le son</span></button>
+</div>
+<script>
+{
+  const it = document.getElementById('intro'), root = document.documentElement;
+  const h = location.hash.slice(1);
+  const done = () => { it.classList.add('out'); root.classList.remove('introlock'); window.__intro3d?.stop(); setTimeout(() => it.remove(), 800); };
+  if (h && h !== 'top') { it.remove(); } else {
+    root.classList.add('introlock');
+    { const l = document.createElement('link'); l.rel = 'modulepreload'; l.crossOrigin = ''; l.href = 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js'; document.head.append(l); import('./intro3d.js').catch(() => it.classList.add('nofx')); setTimeout(() => { if (!it.classList.contains('has3d')) it.classList.add('nofx'); }, 9000); }
+    const red = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const go = () => { if (it.classList.contains('go')) return; if (red) return done(); it.classList.add('go'); const d3 = window.__intro3d; if (d3) d3.nitro(); setTimeout(done, d3 ? 1900 : 1450); };
+    document.getElementById('igo').addEventListener('click', go);
+    document.getElementById('iskip').addEventListener('click', done);
+    addEventListener('keydown', e => { if (document.getElementById('intro') && (e.key === 'Enter' || e.key === ' ') && !it.classList.contains('go')) { e.preventDefault(); go(); } });
+    setTimeout(() => document.getElementById('igo')?.focus({preventScroll:true}), 400);
+  }
+}
+</script>
+<div class="bar" id="bar"></div>
+<div class="bgfx" aria-hidden="true"><span class="g1"></span><span class="g2"></span><div class="fl"><i></i></div></div><div class="cglow" id="cglow"></div>
+<header class="nav g"><div class="brand"><a class="btop" href="#top" aria-label="Revenir en haut de l'accueil"><svg class="ball" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5" fill="#ff8cbf"/><g fill="none" stroke="#120f26" stroke-width="1.4" stroke-linecap="round"><path d="M12 1.5v21M1.5 12h21"/><path d="M5 4.4c2.6 2 4.2 4.8 4.2 7.6S7.6 17.6 5 19.6"/><path d="M19 4.4c-2.6 2-4.2 4.8-4.2 7.6s1.6 5.6 4.2 7.6"/></g></svg></a><button class="bname" data-profile aria-label="Voir mon profil">Tonio Cocco</button></div><nav><button class="pill" id="openIdx"><span class="lg">Tous les projets</span><span class="sm">Projets</span></button><a class="pill red" href="#contact">Contact</a></nav></header>
+<aside class="rail" aria-label="Chapitres"><ol id="rail"><span class="knob" id="knob"></span></ol></aside>
+
+<main id="top">
+<div class="sky">
+<div class="sun2" aria-hidden="true"><i></i></div><div class="mtn e" aria-hidden="true"></div><div class="mtn b" aria-hidden="true"></div>
+
+
+<section class="hero g">
+  <div class="kick"><span>Étudiant en communication visuelle et réalisation graphique</span><span>Originaire de Lyon · étudiant à Béziers</span></div>
+  <h1>Tonio<br>Cocco<svg class="hball" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5" fill="#ff8cbf"/><g fill="none" stroke="#120f26" stroke-width="1.3" stroke-linecap="round"><path d="M12 1.5v21M1.5 12h21"/><path d="M5 4.4c2.6 2 4.2 4.8 4.2 7.6S7.6 17.6 5 19.6"/><path d="M19 4.4c-2.6 2-4.2 4.8-4.2 7.6s1.6 5.6 4.2 7.6"/></g></svg></h1>
+  <div class="under"><div><p>J'imagine des identités, des affiches et des conceptions visuelles, avec la rigueur d'un atelier d'impression.</p></div>
+  <span class="hand">Suivre le fil <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 4v16M5 13l7 7 7-7"/></svg></span></div>
+</section>
+</div>
+<div class="line sea free" data-line="hero" data-h="270"><div class="floor" aria-hidden="true"><i></i></div><div class="hnav g"><span class="lbl" id="hcount"></span><span class="hbar"><i id="hbar"></i></span><span class="harr"><button class="ha" data-h="-1" aria-label="Projets précédents"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button><button class="ha" data-h="1" aria-label="Projets suivants"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button></span></div></div>
+<section class="alt g" id="alternance" data-ch="Mon alternance">
+  <div class="altcard">
+    <div class="altbig"><span class="lbl">Expérience professionnelle</span><b>1 an</b><span class="altsub">d'alternance en graphisme et impression</span>
+      <div class="altline" aria-hidden="true"><i></i><span>Sept. 2024</span><span>Juil. 2025</span></div></div>
+    <div class="altbody"><h2>Mon alternance chez AG Service</h2>
+      <p class="altp">Pendant ma terminale de Bac Pro, j'ai travaillé un an en alternance comme <b>graphiste et imprimeur</b> chez AG Service, près de Lyon. Un vrai rythme d'entreprise, de vrais clients, et des visuels qui partent à l'impression.</p>
+      <ul class="altlist">
+        <li><span class="lbl">Création</span>Infographies, en grande partie pour KFC®</li>
+        <li><span class="lbl">Mise en page</span>Documents et supports sur InDesign</li>
+        <li><span class="lbl">Retouche</span>Préparation et retouche d'images</li>
+        <li><span class="lbl">Impression</span>Adhésif, textile, panneaux</li>
+        <li><span class="lbl">Façonnage</span>Création de covering</li>
+      </ul>
+      <p class="altp2">Avant cela, 6 semaines de stage chez Visuel'Ink (2023) : stop-trottoirs, affiches de menus, cartes de restaurant, en grande partie pour Coca-Cola®.</p>
+      <button class="pill red" data-profile>Voir tout mon parcours</button>
+    </div>
+  </div>
+</section>
+<div id="chapters"></div>
+
+<section class="end g" id="contact" data-ch="La suite">
+  <span class="yrs">La suite</span>
+  <h2>Écrivons le prochain chapitre<em>.</em></h2>
+  <div class="cgrid">
+    <div class="mail"><a href="mailto:tonio.cocco@etu.umontpellier.fr">tonio.cocco@etu.umontpellier.fr</a><button class="pill" id="copy">Copier</button></div>
+    <div class="clist"><div><span>Téléphone</span><b>07 69 59 74 38</b></div><div><span>Origine</span><b>Lyon</b></div><div><span>Études</span><b>Béziers (34)</b></div><div><span>Formation</span><b>BUT MMI, 2e année</b></div><div><span>Mobilité</span><b>Véhiculé</b></div><div class="cwide"><span>Je recherche</span><b>Une alternance de 2 ans <small>(2e et 3e année)</small></b><b><em>ou</em> un stage <span class="dt">du 5 avril au 18 juin</span></b></div></div>
+  </div>
+  <div class="foot"><span>© 2026 Tonio Cocco</span><span>Passions : dessin, design, basket-ball, football, voyages</span></div>
+</section>
+</main>
+
+<dialog id="dw" class="drawer" aria-label="Projet"></dialog>
+<dialog id="idx" class="idx" aria-label="Tous les projets"></dialog>
+<img class="peek" id="peek" alt="">
+<div class="cur" id="cur" aria-hidden="true">Voir</div>
+
+<script>
+{
+const AR = {"samourai-pixel":0.667,"samourai-ecran-titre":0.75,"samourai-boss":0.667,"samourai-cochon":0.667,"samourai-champignon":0.667,"samourai-poisson":0.667,"samourai-torii":1.5,"samourai-decor":1.5,"colonel-forest":0.707,"musee-fabi":0.598,"storyboard-banc":1.399,"lyon":1.407,"barret":.707,"croquis":1.452,"demon":.791,"dragon":.791,"embuscade-1":1.415,"embuscade-2":1.415,"embuscade-3":1.415,"embuscade-4":1.415,"embuscade-5":1.415,"embuscade-6":1.415,"flavours":.794,"hypnesia":.71,"indonesie":.502,"kfc":.718,"mclaren":.707,"moodboard-mexique":1.406,"moodboard-musique":1.406,"moodboard-surrealisme-1":1.778,"moodboard-surrealisme-2":1.778,"nebula":.707,"photo":.834,"portrait-crayon":.797,"printemps-culture":.73,"samourai-mockup":.669,"samourai-newsletter-1":.402,"samourai-newsletter-2":.404,"samourai":.791};
+const P = {
+ nebula:{t:'Nebula',c:'Affiche',x:'Affiche publicitaire · projet BUT MMI, IUT de Béziers',y:'2026',w:"Une affiche publicitaire pour une boisson énergisante fictive, avec un mouvement artistique à choisir : j'ai pris le surréalisme.",h:"Avant d'y parvenir, j'ai d'abord réalisé un moodboard, « Réellement irréel », pour détailler ce mouvement. L'affiche en est la suite logique, et tout le visuel est construit autour de ce thème.",a:"",i:['nebula'],rel:['surrealisme',"Avant l'affiche · étape 1",'Voir le moodboard']},
+ flavours:{t:"Flav'ours",c:'Identité visuelle',x:'Projet de groupe · cours de gestion de projet',y:'',w:"",h:"En cours de gestion de projet, nous avons dû concevoir en groupe une barre chocolatée protéinée, en respectant les critères précis d'un commanditaire. De mon côté, je me suis occupé de toute la partie visuelle : j'ai composé la maquette sur Illustrator, puis ajouté les textures, les effets et le rendu final sur Photoshop.",a:"",i:['flavours']},
+ embuscade:{t:'Embuscade',c:'Audiovisuel',x:"SAÉ · storyboard d'un extrait de film",y:'',w:"",h:"Ce projet était une SAÉ, une évaluation menée sur une semaine : nous devions imaginer l'histoire d'un film, puis en tourner un extrait d'environ 5 minutes dans lequel un objet est mis en avant, comme un placement de produit. Le nôtre était une montre Rolex, en réalité une réplique. J'ai joué le rôle principal, et j'ai réalisé le storyboard à la main avant de le retravailler à l'aide de l'IA, pour le rendre plus propre et numérique.",a:"",i:['embuscade-1','embuscade-2','embuscade-3','embuscade-4','embuscade-5','embuscade-6']},
+ banc:{t:'Émile et Arthur',c:'Audiovisuel',x:"Storyboard d'un extrait publicitaire · dessiné à la main",y:'',w:"",h:"Nous devions tourner un extrait de film publicitaire pour un téléphone. Je me suis occupé du storyboard, et j'ai aussi été l'un des acteurs principaux de l'extrait.",a:"",i:['storyboard-banc']},
+ samourai:{t:'Samouraï, le monde éveillé',c:'Digital',x:'SAÉ · jeu vidéo et direction artistique',y:'',w:"",h:"Ce projet était une SAÉ, cette fois menée sur deux semaines : la première pour concevoir un jeu vidéo (game design), la seconde pour créer toute sa direction artistique et son identité graphique. Pour conclure, nous devions décliner cette identité sur plusieurs supports : une newsletter de lancement (−15 %, avis de joueurs, maps) et une affiche, mise en situation sur le mockup d'un abribus. Tout est aussi parti de mes dessins au crayon à papier : la tête du samouraï, d'où est née la création de notre personnage principal, le boss principal que nous avons imaginé, et une planche de croquis qui rassemble les objets du jeu, ensuite convertis en pixel art pour les intégrer dans notre monde. Les illustrations qui suivent montrent l'écran d'accueil du jeu, son univers, le samouraï en pixel art, le boss, ainsi que les créatures et les éléments du décor.",a:"",i:['samourai-mockup','samourai-newsletter-1','samourai-newsletter-2','samourai','demon','croquis','samourai-ecran-titre','samourai-decor','samourai-pixel','samourai-boss','samourai-cochon','samourai-champignon','samourai-poisson','samourai-torii'],ic:{3:['Samouraï','Dessin · personnage du jeu'],4:['Méchant imaginaire','Dessin · boss du jeu'],5:['Croquis','Dessin · objets du jeu'],6:["Écran d'accueil",'Samouraï, le monde éveillé'],7:['Univers du jeu','Samouraï, le monde éveillé'],8:['Samouraï en pixel art','Samouraï, le monde éveillé']}},
+ cotrajet:{t:'CoTrajet',c:'UI & prototypage',x:"Maquette d'application mobile · Figma",y:'',w:"",h:"En cours d'UI et de prototypage, nous avons dû concevoir la maquette d'une application mobile en suivant les consignes du professeur. Le but n'était pas de se concentrer sur l'esthétique, mais sur les composants, et de faire en sorte que de nombreuses pages et boutons soient correctement reliés entre eux.",a:"",i:[],link:'https://www.figma.com/design/GuC5XFnj12Qt0iA51HTEhI/CoTrajet---Tonio-COCCO?node-id=3-69'},
+ hypnesia:{t:'Hypnesia',c:'Affiche',x:'Hackathon · avec un commanditaire',y:'',w:"",h:"J'ai réalisé cette affiche lors d'un hackathon : un défi créatif en équipe, sur un temps très court, où l'on doit répondre à la demande d'un vrai commanditaire. Le nôtre était une entreprise qui conçoit des casques de réalité virtuelle.",a:"",i:['hypnesia']},
+ kfc:{t:'Affiche KFC',c:'Affiche',x:'Affiche publicitaire · alternance chez AG Service',y:'',w:"",h:"Une affiche typique de celles que je réalisais pour KFC pendant mon alternance chez AG Service : un format classique, que j'avais l'habitude de concevoir au quotidien.",a:"",i:['kfc']},
+ barret:{t:'Affiche de basket',c:'Travaux perso',x:"Photomontage · affiche d'après-match",y:'',w:"",h:"J'ai réalisé ce photomontage pour mon petit cousin, qui joue au basket en club : une affiche d'après-match qui reprend ses statistiques et ses points du jour.",a:"",i:['barret']},
+ mclaren:{t:'McLaren',c:'Travaux perso',x:'Photomontage · exercice de perspective',y:'',w:"",h:"J'ai eu envie de réaliser un photomontage en reprenant un exercice de perspective vu sur Instagram. Je l'ai traité sur le thème de McLaren, pour un ami fan de l'écurie de Formule 1 : une façon de m'exercer, tout en lui faisant plaisir.",a:"",i:['mclaren']},
+ lyon:{t:'Olympique Lyonnais',c:'Travaux perso',x:'Montage personnel · football',y:'Mars 2026',w:"",h:"Je suis sportif : en plus du basket, j'aime aussi le foot, et je suis supporter de l'Olympique Lyonnais. J'ai simplement eu envie de me faire plaisir en réalisant un visuel sur ce thème.",a:"",i:['lyon']},
+ colonel:{t:'Colonel Forest',c:'Travaux perso',x:'Affiche personnelle · KFC',y:'',w:"",h:"Pendant mon alternance chez AG Service, je réalisais des visuels pour KFC. Cela faisait environ un an et demi que je n'en avais plus fait : j'ai donc eu envie de m'y remettre avec une affiche personnelle, pour un burger fictif qui n'existe pas à la carte.",a:"",i:['colonel-forest']},
+ fabi:{t:'Musée FABI',c:'Identité visuelle',x:'Exercice d\'évaluation · réalisation d\'un site web',y:'',w:"",h:"Cette identité visuelle fait partie d'un exercice d'évaluation dans lequel nous devions réaliser un site web.",a:"",i:['musee-fabi']},
+ indonesie:{t:'Indonésie',c:'Identité visuelle',x:'Identité visuelle · exercice pour un site WordPress',y:'',w:"",h:"J'ai réalisé une identité graphique pour un site WordPress, dans le cadre d'un exercice. J'ai travaillé le logo et ses déclinaisons sur Illustrator, puis l'assemblage et les mockups sur Photoshop.",a:"",i:['indonesie']},
+ surrealisme:{t:'Réellement irréel',c:'Moodboard',x:'Moodboard · cours de culture artistique',y:'',w:"",h:"En cours de culture artistique, nous devions travailler sur un mouvement artistique : le mien était le surréalisme. J'ai d'abord choisi mes typographies, mes images et mes inspirations, que nous avons rassemblées dans une présentation de tous les visuels. J'ai ensuite construit le moodboard à partir de cette sélection, en n'en gardant qu'environ la moitié. Ce moodboard était la première étape : il a ensuite servi à créer une affiche publicitaire pour une boisson énergisante, Nebula.",a:"",i:['moodboard-surrealisme-2','moodboard-surrealisme-1'],rel:['nebula','La suite · étape 2',"Voir l'affiche"]},
+ mexique:{t:'Día de los Muertos',c:'Moodboard',x:'Moodboard · cours de culture artistique',y:'',w:"",h:"En cours de culture artistique, nous devions réaliser une affiche sur un monde onirique en lien avec un film Disney. J'ai choisi Coco. Le moodboard devait permettre de reconnaître tout de suite le film choisi.",a:"",i:['moodboard-mexique']},
+ transformation:{t:'Moodboard Marathon MMI',c:'Moodboard',x:'Marathon MMI · 1re année',y:'',w:"",h:"En première année, j'ai participé au Marathon MMI : un projet organisé par l'IUT où l'on doit répondre en équipe, dans un temps limité, à la demande d'un vrai commanditaire. Avant de réaliser les affiches, chaque membre du groupe a dû faire son propre moodboard, pour vérifier que nous avions bien compris ce que notre commanditaire voulait faire ressentir à travers nos futurs visuels.",a:"",i:['moodboard-musique']},
+ portrait:{t:'Tenue traditionnelle indonésienne de mariage',c:'Dessin',x:'Dessin au crayon à papier',y:'',w:"",h:"Ma tante est indonésienne, et je suis allé en Indonésie pour son mariage. À partir d'une photo prise ce jour-là, je l'ai redessinée au crayon à papier, dans sa tenue traditionnelle de mariage.",a:"",i:['portrait-crayon']},
+ dragon:{t:'Dragon Ball',c:'Dessin',x:"Dessin au crayon à papier et au feutre noir",y:'',w:"",h:"Amateur de culture japonaise, et de culture asiatique en général, j'ai simplement eu envie de réaliser un dessin sur le thème de Dragon Ball, au crayon à papier et au feutre noir.",a:"",i:['dragon']},
+};
+const HINTS = {
+ strate:['Stage de découverte · décembre 2019','École de design Strate, Lyon',"Une semaine en école de design : création d'un cadre sur un thème libre, la vague d'Hokusai, et premiers cours de design."],
+ cap:['2022 · SEPR Lyon','CAP ébénisterie d\'art',"Le travail du bois, à la main et à la machine. Stage chez IKEA Lyon Grand Parilly (5 semaines) : agencement du magasin, ponçage, assemblage."],
+ visuelink:['Juin à juillet 2023 · 6 semaines','Visuel\'Ink, Corbas',"Stage de réalisation graphique : stop-trottoirs, affiches de menus et cartes de restaurant, en grande partie pour Coca-Cola®. Découpe d'adhésifs et raccourcis professionnels sur InDesign, Photoshop et Illustrator."],
+ ag:['Septembre 2024 à juillet 2025 · alternance','AG Service',"Graphiste et imprimeur : infographies (en grande partie pour KFC®), mise en page InDesign, retouche d'image, impression sur adhésif, textile et panneaux, création de covering."],
+ bac:['2025 · SEPR Lyon','Bac Pro RPIP, mention très bien',"Réalisation de produits imprimés et plurimédia, option création numérique."],
+ but:['Depuis 2025 · IUT de Béziers','BUT MMI',"Métiers du multimédia et de l'internet, Bac+3 : communication, design graphique, audiovisuel, web et gestion de projet. Actuellement en 2e année. Tout est détaillé plus bas, dans « Ma formation »."]
+};
+const TOOLS = [['Ps','Photoshop','4 ans','#001e36','#31a8ff'],['Ai','Illustrator','4 ans','#330000','#ff9a00'],['Id','InDesign','4 ans','#49021f','#ff3366'],['Ae','After Effects','motion design','#00005b','#d291ff'],['Pr','Premiere Pro','montage vidéo','#00005b','#9999ff'],['Au','Audition','montage son','#00005b','#00e4bb'],['Fg','Figma','maquettes et prototypes','#1e1e1e','#a259ff'],['Wp','WordPress','vu en cours','#0f3a52','#9fd8f5'],['</>','HTML · CSS · JS','vu en cours','#1b1b1b','#6fe3d6'],['Bl','Blender','3D, à venir','#1c1c1c','#f5792a']];
+const FORM = [
+ ['Communication',"Analyser une cible, construire une stratégie de communication et choisir les supports qui vont la porter.",[],[]],
+ ['Design graphique',"Identité visuelle, affiche, mise en page, retouche : produire des visuels cohérents avec une charte.",['Photoshop','Illustrator','InDesign'],[]],
+ ['Audiovisuel & motion design',"Écrire un storyboard, tourner, monter, animer des textes et des formes, créer une bande-son.",['Premiere Pro','After Effects','Audition'],[]],
+ ['UI & prototypage',"Concevoir des interfaces et des maquettes interactives avant de les développer.",['Figma'],[]],
+ ['Développement web',"Intégrer et programmer des sites : HTML, CSS, JavaScript, animations SVG, et des CMS comme WordPress.",['HTML · CSS · JS','WordPress'],[]],
+ ['3D',"Au programme de la suite de la formation : modélisation, textures, lumière et rendu en 3D sur Blender.",['Blender'],[]],
+ ['Gestion de projet',"Projets tutorés en équipe, plannings, travail avec de vrais commanditaires, stages et alternance possibles dès la 2e année.",[],[]]
+];
+const DOMS = [
+ ['Identité visuelle','Logos, palettes, typographies et déclinaisons sur supports, jusqu\'au packaging et au présentoir.',['flavours','indonesie']],
+ ['Affiche & publicité','Affiches, menus, stop-trottoirs et visuels promotionnels pensés pour être compris en un coup d\'œil.',['nebula','kfc']],
+ ['Illustration & dessin','Dessin à la main et création vectorielle, du croquis au visuel final.',['samourai:3','samourai:4','samourai:5']],
+ ['Digital & maquettes','Maquettes d\'application sur Figma, comme CoTrajet, newsletters et mises en situation réalistes.',['cotrajet','samourai']]
+];
+const CH = [
+ {id:'crayon',yrs:'Depuis toujours',t:'Tout commence par un crayon',s:`<p>Depuis tout petit, je dessine : des personnages, des créatures, des objets. En troisième, un stage à l'école de design <button class="hint" data-h="strate">Strate</button> me fait toucher au métier pour la première fois.</p><p>Je passe ensuite par le bois avec un <button class="hint" data-h="cap">CAP ébénisterie d'art</button>. L'atelier m'apprend la patience et la précision du geste, que je garde dans chaque visuel.</p>`,it:['samourai:3','samourai:4','portrait','dragon','samourai:5'],note:[0,'Mon premier style']},
+ {id:'atelier',yrs:'2023 → aujourd\'hui',t:"L'atelier et l'affiche",s:`<p>Je bascule vers la réalisation graphique. En stage chez <button class="hint" data-h="visuelink">Visuel'Ink</button> puis en alternance chez <button class="hint" data-h="ag">AG Service</button>, je conçois et j'imprime pour de vraies enseignes : menus, stop-trottoirs, infographies, covering.</p><p>J'y apprends qu'un bon visuel doit aussi être un bon fichier. Je termine avec un <button class="hint" data-h="bac">Bac Pro RPIP</button> mention très bien.</p>`,it:['nebula','hypnesia','kfc'],note:[0,'Cette année, à l\'IUT']},
+ {id:'concept',yrs:'2025 → aujourd\'hui',t:'Partir d\'une idée',s:`<p>En <button class="hint" data-h="but">BUT MMI</button> à Béziers, on apprend à partir d'une idée : un mouvement artistique, un thème, une ambiance ou la demande d'un commanditaire. Une partie du travail se fait en amont, en recherche : rassembler des images, des couleurs et des typographies, parfois sous forme de moodboard, avant de construire le visuel final.</p>`,it:['surrealisme','transformation','mexique']},
+ {id:'marque',yrs:'Identité',t:'Construire une marque',s:`<p>Une identité, c'est un système : un logo qui tient en petit comme en grand, une palette, des typographies et des supports qui donnent envie de prendre le produit en main.</p>`,it:['flavours','fabi','indonesie'],big:1},
+ {id:'recit',yrs:'Image animée',t:'Raconter en images',s:`<p>Deux storyboards : quand l'image doit tenir dans le temps, je découpe, je cadre et je rythme.</p>`,it:['embuscade','banc'],big:1},
+ {id:'interface',yrs:'UI & prototypage',t:'Concevoir une interface',s:`<p>Une application, c'est d'abord un parcours : des écrans, des composants et des boutons qui mènent au bon endroit.</p>`,it:['cotrajet'],big:1},
+ {id:'plaisir',yrs:'Hors cadre',t:'Pour le plaisir',s:`<p>Quand un sujet me plaît, je ressens le besoin d'y exprimer ma créativité, que ce soit sur ordinateur ou à la main. C'est là que je teste des compositions plus libres.</p>`,it:['lyon','colonel','barret','mclaren'],big:1},
+ {id:'formation',yrs:'BUT MMI · IUT de Béziers',t:'Ma formation',s:`<p>Je suis en 2e année de BUT MMI, Métiers du multimédia et de l'internet, à l'IUT de Béziers. C'est un diplôme Bac+3 qui forme à la communication, au design graphique, à l'audiovisuel, au développement web et à la gestion de projets numériques, avec de la 3D sur Blender au programme.</p><p>Le but : savoir penser une communication de A à Z, puis produire soi-même les visuels, les vidéos et les sites qui la portent. Voici les logiciels que j'utilise, puis ce qu'on touche en cours.</p>`,it:TOOLS.map((t, k) => 'tool:' + k),tools:1,map:1,acc:'FORM'},
+ {id:'outils',yrs:'Savoir-faire',t:'Ce que je maîtrise',s:`<p>De l'idée au fichier d'impression : je conçois, je mets en page et je connais les contraintes de fabrication. Quatre ans sur la suite Adobe, et toujours un crayon à portée de main.</p>`,it:[],acc:'DOMS'}
+];
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const src = n => 'img/' + n + '.webp';
+const tsrc = n => 'img/t/' + n + '.webp';
+const ssrc = n => 'img/s/' + n + '.webp';
+const COL = {"samourai-pixel": "#d3c9ca", "samourai-ecran-titre": "#66697b", "samourai-boss": "#d9d9d9", "samourai-cochon": "#e1eaf5", "samourai-champignon": "#e9eaf6", "samourai-poisson": "#e7e6f7", "samourai-torii": "#eeded7", "samourai-decor": "#743b29", "hypnesia": "#5c5963", "samourai": "#d4d5d3", "moodboard-mexique": "#6b433e", "demon": "#dbdcdb", "embuscade-1": "#ebebeb", "samourai-newsletter-1": "#776397", "samourai-mockup": "#5a333e", "storyboard-banc": "#bebdb7", "dragon": "#9f8c81", "samourai-newsletter-2": "#6f539a", "photo": "#705d4d", "croquis": "#efefef", "embuscade-6": "#dadada", "mclaren": "#564536", "moodboard-surrealisme-1": "#c6a892", "kfc": "#cc9d8f", "moodboard-musique": "#b09373", "indonesie": "#818357", "portrait-crayon": "#b8b8ae", "nebula": "#424150", "embuscade-3": "#e9e9e9", "lyon": "#36505d", "colonel-forest": "#4f5742", "embuscade-5": "#ececec", "embuscade-2": "#ececec", "musee-fabi": "#9fa8a7", "printemps-culture": "#b38e6c", "embuscade-4": "#ededed", "barret": "#ac6e72", "moodboard-surrealisme-2": "#6c706e", "flavours": "#8d4645"};
+const SIZES = '(max-width:900px) 170px, 260px';
+const srcs = n => `src="${ssrc(n)}" srcset="${ssrc(n)} 380w, ${tsrc(n)} 560w" sizes="${SIZES}"`;
+const ic = p => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${p}"/></svg>`;
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const CLIP = `<svg class="clip" viewBox="0 0 16 40" aria-hidden="true"><rect x="1" y="0" width="6.5" height="40" rx="2" fill="var(--pin)"/><rect x="8.5" y="0" width="6.5" height="40" rx="2" fill="var(--pin)"/><rect x="2" y="1" width="2" height="36" rx="1" fill="#ffffff22"/><circle cx="8" cy="15" r="4.5" fill="none" stroke="var(--red)" stroke-width="2"/></svg>`;
+
+const appChip = n => { const t = TOOLS.find(x => x[1] === n); return t ? `<span class="app"><i style="background:${t[3]};color:${t[4]};border-color:${t[4]}">${esc(t[0])}</i>${esc(n)}</span>` : ''; };
+const progHTML = () => `<div class="g prog"><div class="proghead"><span class="lbl">Au programme du BUT MMI</span><h3>Ce que l'on travaille en cours</h3><p>Les grands domaines de la formation, et les logiciels utilisés pour chacun.</p></div>
+  <div class="progrid">${FORM.map(([t, d, a], j) => `<article class="pc"><span class="pn">${String(j + 1).padStart(2, '0')}</span><h4>${esc(t)}</h4><p>${esc(d)}</p>${a.length ? `<div class="apps">${a.map(appChip).join('')}</div>` : ''}</article>`).join('')}</div>
+  <p class="proghint" aria-hidden="true">Glissez pour voir toutes les matières →</p></div>`;
+const accHTML = (L, pre) => `<div class="g"><div class="doms">${L.map((row, j) => { let [t, d, a, ps] = row; if (row.length === 3) { ps = a; a = []; } return `<div class="dom"><button aria-expanded="false" aria-controls="${pre}${j}"><h3>${t}</h3><span class="pl">${ic('M12 5v14M5 12h14')}</span></button><div class="body" id="${pre}${j}" hidden><div><p>${d}</p>${a.length ? `<div class="apps">${a.map(appChip).join('')}</div>` : ''}</div>${ps.length ? `<div class="thumbs">${ps.map(r => { const [p, n] = r.split(':'), k = +(n || 0); return P[p].i.length ? `<button data-open="${p}" data-i="${k}" aria-label="Ouvrir ${esc(P[p].t)}"><img src="${tsrc(P[p].i[k])}" alt="" loading="lazy"></button>` : `<button class="tproto" data-open="${p}" aria-label="Ouvrir ${esc(P[p].t)}"><small>Figma</small>${esc(P[p].t)}<span>↗</span></button>`; }).join('')}</div>` : '<span></span>'}</div></div>`; }).join('')}</div></div>`;
+/* ---------- chapters ---------- */
+$('#chapters').innerHTML = CH.map((c, k) => `
+ <div class="drop" data-side="${k % 2 ? 'l' : 'r'}"></div>
+ <section class="ch ${c.hz ? 'hz' : ''}" id="${c.id}" data-ch="${esc(c.t)}">
+  <div class="${c.hz ? 'sticky' : ''}">
+  <div class="head g"><div><span class="yrs">${c.yrs}</span><h2>${c.t}</h2></div><div class="story">${c.s}<span class="lbl swipe">Glissez le fil →</span></div></div>
+  ${c.it.length ? `<div class="line" data-line="${k}" data-h="${c.big ? 400 : c.tools ? 150 : c.hz ? 330 : 300}"></div>` : ''}
+  ${c.hz ? `<div class="g count" id="hzc"></div>` : ''}
+  </div>
+  ${c.acc === 'FORM' ? progHTML() : ''}
+  ${c.map ? `<div class="g"><div class="mapw"><div class="mapbox"><svg class="fmap" id="fmap" viewBox="0 0 600 600" role="img" aria-label="Carte de France : position de l'IUT de Béziers"><defs><pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#f7eef31a"/></pattern><radialGradient id="pg"><stop offset="0" stop-color="#ff8cbf" stop-opacity=".55"/><stop offset="1" stop-color="#ff8cbf" stop-opacity="0"/></radialGradient><radialGradient id="cg"><stop offset="0" stop-color="#5ff4ff" stop-opacity=".55"/><stop offset="1" stop-color="#5ff4ff" stop-opacity="0"/></radialGradient></defs>
+<rect class="dots" x="-600" y="-600" width="1800" height="1800" fill="url(#dots)"/>
+<path d="M569,241L570,242L573,244L572,248L569,255L567,261L567,265L567,267L568,267L571,267L572,267L577,268L581,270L582,271L582,274L587,276L592,278L593,278L600,271L602,272L604,276L604,278L602,285L602,289L603,291L603,293L603,295L600,295L597,294L594,291L592,291L590,292L589,295L588,299L588,301L590,302L591,305L592,309L592,311L592,312L590,312L588,312L586,307L584,305L582,305L579,306L573,309L571,309L569,308L567,306L566,301L565,299L564,299L560,298L559,299L559,304L558,309L557,313L552,319L550,322L549,324L549,326L550,329L551,332L550,333L547,334L545,332L545,329L541,325L542,322L542,321L536,319L533,316L529,312L528,310L528,303L528,301L527,301L525,301L523,303L520,306L515,310L514,311L516,315L516,316L512,322L511,324L506,328L503,329L496,326L494,326L491,328L486,330L478,331L476,330L474,329L474,327L472,324L470,322L468,320L466,318L465,316L467,310L465,308L465,305L465,303L464,302L458,301L452,301L448,303L445,307L444,308L445,308L446,311L443,314L439,317L436,317L435,317L435,313L437,312L440,310L440,306L440,304L438,302L438,300L440,297L441,294L442,292L447,288L451,284L452,279L452,274L453,273L459,270L461,269L462,267L467,261L472,255L473,253L474,252L474,251L473,251L471,250L470,248L472,245L476,243L479,243L480,244L480,245L481,246L484,246L486,246L489,245L491,242L492,240L497,237L500,238L508,239L515,238L519,236L524,236L527,237L528,237L528,237L529,236L532,235L533,235L533,234L532,233L528,234L527,233L527,232L528,229L530,227L533,227L535,227L539,231L540,231L540,231L541,230L543,231L544,233L544,234L554,233L556,233L562,237ZM270,699L269,700L266,699L263,699L262,698L263,696L264,695L266,698L270,698ZM328,645L332,647L336,645L338,646L340,646L340,650L338,653L336,657L334,660L332,665L329,667L325,669L319,666L315,665L314,664L313,659L311,657L309,657L307,658L304,660L302,658L300,657L299,656L299,654L315,642L319,639L329,636L330,637L329,638L329,639L330,640L330,642L329,643ZM371,642L371,643L359,637L355,637L355,636L355,633L355,632L363,631L369,633L372,639L373,640ZM264,688L263,691L257,689L256,688L257,685L259,684L259,682L260,680L269,678L270,679L271,682L266,687ZM142,463L142,464L143,467L145,468L148,469L151,469L154,470L156,471L157,473L156,476L155,478L154,480L155,481L156,482L157,482L158,482L159,480L160,479L160,478L160,479L161,480L165,483L174,486L178,486L181,487L182,488L188,494L189,494L191,494L195,493L197,492L198,493L200,494L202,495L204,496L207,499L208,500L217,498L219,499L221,499L224,499L229,500L233,500L234,499L234,494L235,492L236,492L238,492L248,495L251,497L255,498L258,499L260,500L263,504L263,507L263,508L264,509L263,511L264,512L266,513L267,512L269,512L273,509L274,509L280,512L282,513L283,515L284,516L286,517L289,515L293,513L299,515L306,517L310,517L310,516L310,515L311,514L313,514L316,513L319,512L322,511L325,512L328,513L331,513L332,516L334,517L334,520L331,522L329,522L328,526L329,528L331,529L332,531L332,538L328,542L323,547L297,562L290,569L288,571L269,575L255,580L248,582L240,590L237,594L240,595L243,599L242,601L237,604L234,604L233,604L232,604L223,619L215,630L211,634L207,641L197,658L197,663L202,681L204,685L208,689L215,692L217,695L215,698L208,704L195,711L190,717L189,722L185,725L184,732L182,737L181,739L179,743L179,746L182,749L180,751L179,752L174,752L160,753L148,761L142,768L136,782L130,790L127,791L123,788L117,787L112,788L109,791L104,793L100,791L91,791L87,791L80,793L75,792L65,791L45,793L42,793L40,797L33,803L23,803L15,806L12,809L9,815L7,820L7,820L6,819L4,819L4,823L0,824L-3,825L-10,822L-15,818L-18,817L-23,811L-25,806L-27,802L-26,800L-27,798L-31,796L-32,792L-29,787L-26,784L-25,783L-29,784L-32,787L-35,781L-50,770L-49,768L-49,766L-52,769L-54,770L-61,769L-70,771L-72,759L-73,754L-73,752L-71,745L-69,742L-65,736L-61,731L-57,730L-55,730L-54,726L-53,723L-54,722L-58,723L-67,710L-67,708L-66,705L-65,701L-65,697L-63,695L-59,692L-56,688L-55,684L-54,681L-56,678L-61,677L-66,667L-67,661L-68,660L-71,657L-74,652L-75,651L-72,650L-59,650L-56,649L-56,649L-54,645L-51,638L-51,634L-51,632L-56,628L-56,626L-55,624L-53,622L-49,620L-47,618L-48,616L-49,614L-49,613L-48,611L-48,604L-48,602L-48,596L-49,591L-52,585L-51,583L-50,582L-46,580L-43,574L-38,570L-32,566L-28,562L-26,559L-25,558L-25,557L-26,555L-28,553L-32,552L-35,552L-37,551L-38,550L-38,545L-38,541L-38,539L-40,538L-43,538L-46,537L-48,537L-49,537L-56,537L-58,537L-60,536L-61,536L-62,537L-62,538L-62,540L-65,542L-70,543L-74,543L-78,542L-79,541L-81,540L-88,541L-89,541L-92,542L-96,544L-98,544L-99,544L-99,543L-101,540L-100,538L-97,534L-97,533L-99,531L-100,529L-100,528L-102,528L-104,529L-112,531L-114,532L-118,534L-122,538L-124,538L-125,537L-126,529L-121,524L-118,521L-120,520L-123,520L-123,518L-121,517L-120,514L-121,513L-123,511L-123,506L-122,504L-123,502L-129,505L-131,504L-131,501L-128,496L-127,494L-131,493L-135,490L-137,488L-139,485L-139,482L-137,475L-133,472L-131,471L-125,466L-117,467L-112,466L-108,464L-106,463L-102,461L-102,458L-103,456L-102,454L-97,451L-92,448L-87,447L-81,444L-77,446L-73,445L-70,448L-64,453L-57,455L-51,453L-40,453L-35,454L-25,452L-20,453L-11,450L-4,453L9,455L17,458L39,462L47,462L58,460L63,458L67,459L74,457L77,457L81,460L95,464L98,461L101,460L111,462L121,467L127,467L134,466L141,463ZM-407,1166L-410,1176L-413,1180L-414,1181L-419,1182L-424,1176L-426,1170L-428,1168L-426,1166L-422,1167L-415,1165L-413,1165L-406,1159L-399,1158L-398,1160ZM-308,1143L-310,1146L-313,1145L-312,1139L-311,1137L-305,1135L-301,1133L-300,1131L-298,1129L-297,1131L-298,1133L-299,1139L-302,1141ZM-326,1175L-331,1180L-336,1179L-337,1178L-332,1177L-327,1173L-324,1165L-319,1156L-319,1152L-317,1151L-314,1151L-313,1151L-312,1153L-312,1157L-313,1165L-316,1172ZM-371,1176L-372,1180L-371,1183L-371,1188L-373,1191L-377,1193L-381,1193L-383,1192L-387,1187L-387,1183L-383,1180L-382,1176L-373,1177L-372,1176L-372,1176ZM-439,1182L-440,1182L-442,1181L-444,1178L-443,1175L-441,1174L-440,1174L-437,1176L-435,1178L-435,1179ZM-465,1191L-469,1198L-473,1195L-474,1194L-475,1193L-471,1192L-466,1189ZM-463,1161L-464,1162L-465,1158L-469,1150L-467,1146L-462,1146L-460,1149L-459,1152L-460,1153L-460,1156L-460,1158ZM490,445L488,446L488,445L489,444L489,444L490,444ZM440,92L440,94L440,97L441,101L444,104L445,107L448,109L453,111L454,111L454,114L454,116L453,118L451,120L450,123L449,128L449,131L446,130L445,129L443,129L440,129L439,131L436,132L434,131L433,130L432,129L429,128L428,126L429,125L430,124L430,122L431,120L429,115L428,113L426,111L426,109L426,108L426,107L426,104L428,102L429,99L431,94L435,89L438,90L439,90L440,92ZM474,329L476,330L478,331L486,330L491,328L494,326L496,326L503,329L506,328L511,324L512,322L516,316L516,315L514,311L515,310L520,306L523,303L525,301L527,301L528,301L528,303L528,310L529,312L533,316L536,319L542,321L542,322L541,325L545,329L545,332L547,334L550,333L551,332L550,329L549,326L549,324L550,322L552,319L557,313L558,309L559,304L559,299L560,298L564,299L565,299L566,301L567,306L569,308L571,309L573,309L579,306L582,305L584,305L586,307L588,312L590,312L592,312L592,311L592,309L591,305L590,302L588,301L588,299L589,295L590,292L592,291L594,291L597,294L600,295L603,295L603,293L603,291L602,289L602,285L604,278L605,278L609,278L613,279L615,282L618,282L622,283L624,282L625,281L627,278L629,274L634,271L641,271L644,270L648,270L651,271L654,271L661,268L669,266L670,266L670,267L668,269L667,271L668,274L672,279L675,283L677,287L680,288L685,289L689,290L693,291L706,294L713,294L718,295L726,297L725,300L724,300L721,302L718,305L715,308L714,311L715,313L716,313L717,313L718,313L720,314L724,315L724,316L723,318L721,320L718,323L718,324L718,326L719,326L722,326L723,327L721,334L722,335L725,336L727,338L731,342L733,346L732,347L729,348L727,347L729,345L724,337L721,337L717,341L708,337L706,339L704,341L701,345L696,346L691,350L685,352L681,354L678,354L682,350L681,349L676,352L673,355L672,359L671,366L673,368L677,377L682,380L681,384L680,387L677,389L674,388L673,388L672,394L674,409L677,420L681,425L688,432L696,436L711,448L719,452L721,454L726,463L730,474L735,491L738,500L744,509L758,522L770,532L782,538L791,539L812,538L815,538L819,540L820,544L819,547L814,550L810,554L809,559L813,563L834,573L855,582L861,586L869,593L887,602L890,607L901,616L906,624L907,630L904,635L903,639L901,644L897,642L891,638L883,621L869,619L866,618L860,615L860,613L859,611L858,610L852,609L848,612L843,619L838,628L833,642L833,647L836,652L844,655L851,660L855,665L855,677L857,684L854,687L849,687L842,689L836,693L834,697L835,708L834,712L824,720L818,728L817,731L815,735L803,735L800,730L800,723L802,719L806,717L809,709L808,702L810,699L812,698L815,696L821,695L821,686L817,682L816,677L814,666L807,653L804,641L802,635L797,632L790,632L786,631L773,623L773,622L773,619L775,616L773,612L772,607L769,604L766,602L761,603L759,604L755,603L752,605L750,605L755,599L754,597L749,594L743,594L741,594L740,595L739,594L739,592L732,579L728,573L725,572L721,573L714,571L709,571L707,571L703,573L701,572L701,570L694,565L686,562L670,544L665,538L655,531L648,520L643,516L636,513L634,514L632,515L630,515L628,514L630,512L631,512L631,508L622,497L617,494L616,492L615,489L613,487L611,486L609,486L606,485L606,480L607,476L606,473L604,464L599,457L596,439L594,434L588,431L577,426L560,415L556,415L546,410L540,409L532,413L522,424L514,436L511,438L501,442L492,444L492,441L492,439L493,436L496,433L498,430L499,427L499,426L498,423L496,423L488,425L486,424L479,421L472,417L470,414L469,411L470,409L469,407L468,405L469,402L471,398L472,396L474,395L475,394L473,388L473,387L471,386L469,386L466,385L464,383L463,380L462,378L460,375L460,372L462,371L465,371L468,372L473,367L475,367L477,366L478,360L479,358L479,357L478,356L474,352L472,348L469,343L466,341L466,339L466,337L466,335L471,332ZM679,540L679,540L678,540L678,540L678,540ZM681,437L682,434L681,432L679,433L677,435L678,437ZM602,491L603,493L603,494L602,495L603,498L599,496L595,497L592,497L591,495L592,493L596,493L598,492L600,493ZM735,600L734,600L733,600L732,599L733,597L736,598L736,599ZM664,791L662,791L660,790L660,787L660,787L663,788L664,790ZM797,721L794,727L793,729L784,742L783,745L782,748L782,751L780,754L779,758L779,762L780,763L781,765L783,766L784,768L782,769L784,773L786,775L786,777L786,779L782,782L781,784L780,787L779,789L780,792L780,794L775,794L771,792L767,793L761,790L759,790L757,789L751,781L747,777L743,774L739,774L734,775L730,773L722,767L714,763L710,760L708,758L706,757L701,755L697,752L695,752L691,752L689,752L686,751L682,748L679,743L679,740L681,735L683,729L685,728L687,727L689,725L690,723L694,729L696,730L698,730L702,728L702,726L706,723L711,723L713,723L714,726L716,726L718,727L726,732L728,733L730,733L735,731L739,730L748,731L753,730L757,730L762,728L765,725L767,724L769,724L775,724L780,724L782,724L784,722L786,721L788,721L794,718L797,718L799,719ZM573,591L575,594L579,607L579,610L579,613L577,615L573,621L574,627L575,630L576,634L575,638L572,666L571,671L570,676L567,677L564,675L559,673L557,673L555,674L553,673L551,672L550,681L548,685L545,688L541,688L538,687L536,687L534,685L532,682L530,678L527,674L527,669L526,660L527,658L528,656L529,652L528,648L529,647L531,648L532,648L532,646L532,643L530,640L527,639L526,636L527,633L528,631L529,628L529,620L527,617L526,613L525,610L522,607L520,605L518,603L518,597L519,592L520,589L521,590L523,592L525,593L529,593L533,593L538,590L542,588L549,580L553,578L555,576L556,573L558,572L560,575L562,575L566,578L568,580L569,582L571,584L572,584L572,585L571,585L570,589L571,589ZM529,680L527,685L525,682L525,679L525,678L528,679ZM522,583L521,585L519,585L520,584L521,580L523,579L524,580L523,582ZM569,241L562,237L556,233L554,233L544,234L544,233L543,231L541,230L540,231L540,231L539,231L535,227L533,227L530,227L528,229L527,232L527,233L528,234L532,233L533,234L533,235L532,235L529,236L528,237L528,237L527,237L524,236L519,236L515,238L508,239L500,238L497,237L495,236L494,233L494,227L496,220L497,214L496,211L497,205L500,198L502,191L504,183L505,178L508,175L516,165L517,164L516,159L514,158L511,157L504,155L497,154L493,152L491,149L489,148L485,150L481,151L478,150L476,150L475,151L474,150L474,147L472,146L470,145L468,146L467,147L465,148L464,148L459,141L458,139L457,137L456,135L453,132L450,131L449,131L449,128L450,123L451,120L453,118L454,116L454,114L454,111L453,111L448,109L445,107L444,104L441,101L440,97L440,94L440,92L440,91L443,86L450,81L449,76L449,73L447,71L444,70L443,68L442,67L445,64L442,62L440,59L436,56L436,55L438,46L436,43L434,42L432,41L431,40L431,38L431,37L434,38L434,37L441,31L441,30L440,29L439,29L439,28L439,26L442,19L443,15L443,13L443,11L441,7L439,4L439,1L438,0L434,-6L434,-9L436,-10L439,-12L440,-13L442,-13L447,-12L449,-10L450,-10L452,-12L455,-12L464,-15L465,-17L466,-19L466,-19L463,-23L463,-24L463,-26L464,-27L466,-27L468,-29L473,-33L474,-37L475,-41L475,-44L474,-46L472,-48L471,-48L467,-48L464,-49L462,-51L462,-53L463,-54L463,-56L462,-57L463,-59L464,-60L474,-60L475,-61L475,-67L478,-75L480,-80L481,-83L481,-94L481,-100L479,-103L476,-106L476,-113L478,-118L481,-124L484,-126L497,-127L512,-126L518,-117L515,-112L519,-110L521,-111L522,-115L523,-119L524,-121L528,-117L530,-115L530,-107L532,-118L530,-125L531,-132L533,-136L535,-138L545,-135L557,-137L561,-134L571,-120L574,-118L579,-118L573,-120L561,-137L557,-139L552,-140L548,-141L546,-144L545,-146L546,-163L543,-165L541,-166L539,-165L536,-165L535,-169L536,-172L543,-174L547,-176L547,-181L544,-184L541,-191L537,-197L537,-205L544,-204L545,-204L556,-201L559,-198L562,-198L568,-201L572,-201L574,-200L576,-199L577,-199L577,-198L583,-197L585,-194L588,-190L588,-183L585,-179L582,-177L592,-178L593,-175L595,-172L600,-174L614,-166L623,-170L625,-170L627,-164L625,-158L617,-151L619,-147L621,-146L628,-147L640,-142L642,-144L651,-153L654,-155L666,-157L669,-161L673,-164L676,-168L684,-176L692,-175L696,-173L701,-172L706,-164L717,-155L727,-156L731,-147L733,-137L736,-133L739,-131L747,-129L747,-129L748,-127L748,-122L749,-118L753,-100L753,-96L753,-95L752,-89L749,-84L745,-81L743,-78L742,-75L747,-69L757,-60L761,-53L759,-47L758,-43L759,-40L761,-38L763,-36L764,-33L764,-30L764,-27L766,-26L766,-25L765,-22L764,-18L763,-15L760,-10L761,-7L763,-2L765,0L766,2L764,7L765,8L772,12L773,14L774,17L776,25L774,34L772,40L768,48L768,48L768,49L766,51L765,51L762,50L761,49L761,45L760,45L759,43L758,40L757,39L751,38L750,38L748,38L747,40L748,41L749,43L752,45L752,46L745,48L741,51L738,52L734,54L726,57L721,58L720,58L718,63L716,64L715,63L714,63L713,63L711,65L710,65L709,65L707,69L700,70L700,72L699,75L698,75L695,74L691,74L689,75L686,76L683,76L679,79L676,83L674,87L673,89L671,85L669,82L667,81L666,81L666,82L666,83L667,87L669,89L669,91L670,94L673,97L677,99L679,102L681,105L681,106L681,108L680,109L679,111L677,115L678,116L679,118L681,120L683,124L686,131L688,133L690,136L693,138L697,138L701,142L705,148L708,151L711,152L713,154L714,157L715,159L717,160L721,160L726,164L729,168L731,171L730,172L730,175L730,179L730,181L727,184L726,184L725,185L718,181L718,182L717,182L715,192L714,194L712,196L708,197L705,198L703,199L696,203L693,205L691,208L691,210L694,215L698,220L698,225L696,229L696,230L697,230L699,231L701,231L702,234L702,238L701,242L700,244L699,244L695,242L693,240L692,239L692,237L692,236L691,234L688,233L685,234L682,235L680,235L679,233L676,232L672,231L670,230L670,231L670,234L669,236L651,238L646,240L642,242L639,243L639,245L636,247L632,247L632,247L630,247L626,248L624,248L623,246L621,244L620,242L620,241L615,241L612,240L605,240L603,239L603,240L602,247L601,250L599,253L596,254L594,255L594,253L594,250L593,249L590,249L589,248L590,246L589,245L588,244L586,242L581,239L577,238L576,239L574,241L570,240ZM727,-171L728,-166L727,-164L722,-168L718,-168L716,-162L714,-162L707,-167L706,-170L706,-172L707,-179L707,-181L709,-184L709,-187L713,-191L716,-191L717,-188L718,-186L724,-183L725,-182L725,-181L723,-178L722,-176L723,-173ZM746,-143L745,-141L746,-138L744,-138L739,-137L735,-138L734,-142L735,-146L733,-148L731,-150L731,-152L731,-154L739,-148ZM635,-173L629,-173L627,-175L625,-176L626,-179L628,-180L633,-178L635,-174ZM523,-197L522,-196L522,-205L527,-215L528,-215L527,-212L526,-210L525,-206L526,-204L535,-204L534,-202L524,-201ZM533,-192L532,-191L528,-191L526,-192L527,-194L529,-195L530,-195L533,-194ZM369,17L372,18L374,19L376,18L375,14L377,12L379,11L380,13L383,15L384,15L389,10L390,11L391,13L391,14L391,15L392,16L396,15L398,13L399,12L400,13L401,15L402,19L406,23L410,24L414,24L416,23L417,23L418,26L421,28L426,30L428,31L429,32L429,35L426,41L426,42L426,43L426,44L423,48L422,49L423,52L424,53L426,54L428,55L432,55L436,55L436,56L440,59L442,62L445,64L442,67L443,68L444,70L447,71L449,73L449,76L450,81L443,86L440,91L440,92L440,92L439,90L438,90L435,89L431,94L429,99L428,102L426,104L426,107L426,108L426,109L426,111L428,113L429,115L431,120L430,122L430,124L429,125L428,126L425,126L421,127L419,128L417,128L415,125L412,122L410,120L409,118L406,117L403,116L400,114L398,112L396,112L393,112L392,108L392,104L390,102L393,91L391,90L390,91L387,94L386,97L385,99L381,102L374,102L367,102L366,101L366,100L366,99L366,98L367,96L368,94L366,92L366,91L366,89L367,86L367,85L362,80L359,79L355,79L352,79L351,79L350,80L349,81L348,80L346,72L345,71L341,70L335,69L333,68L332,64L332,60L330,56L329,55L327,53L324,54L320,56L318,57L317,57L314,55L310,51L308,47L307,45L308,43L307,41L305,37L305,34L321,24L331,19L336,17L337,22L338,24L339,25L341,25L342,24L345,23L348,23L351,25L352,26L354,27L357,28L362,25L367,22L368,19ZM274,509L273,509L269,512L267,512L266,513L264,512L263,511L264,509L263,508L263,507L263,504L265,503L266,502L269,502L274,504L275,505L275,506L274,508Z" fill="#f7eef308" stroke="#f7eef326" stroke-width=".8" vector-effect="non-scaling-stroke"/>
+<path class="fr" d="M567.1,493.6L566.2,501.1L566.9,503.3L568.2,504.9L568.9,506.6L570,526.6L569.7,528.2L565.1,536.2L564.2,538.5L563.9,548.4L563.1,551L561.4,553.7L558.6,562.1L556,565.8L549.1,561.2L545,559.3L543.1,557.1L541.8,555.6L542.6,553.6L544.5,551.5L544.7,549.9L540.4,548L538.4,546.8L538.4,544.7L539.9,541.4L539.2,538.6L536.7,538.7L534.7,538.3L534.6,536.8L535.9,534.9L537.8,532.6L537.7,529.9L535.5,528.8L533.5,526.6L532.7,523.6L534.3,521.6L536.7,520.3L535,517.3L533.6,517.2L532.7,516.6L533.5,515.1L535.4,513L538.2,506.7L542,503.8L548.8,501.8L550.7,501L552.3,498.8L554.2,497.4L556.4,497.5L558.6,498.3L559.8,499.3L560.9,498.3L561.7,495.6L561.2,493.2L561.4,486.5L562.7,482.7L564.7,482.4L566.5,484.6L566.3,486.4L567,490.8ZM496.8,237.1L492.2,239.6L491.2,241.9L489.5,244.8L486.5,246L483.6,246.4L481.2,246L479.8,244.9L480,243.8L478.8,242.9L475.6,242.9L472.4,245L469.8,248.3L470.6,250.1L473.1,250.6L473.6,251.3L473.6,252.2L472.8,253.4L471.8,255.3L466.8,261.1L461.8,266.9L461,268.6L459.5,269.9L453.1,272.9L452.4,274.2L452,279.3L451.3,283.6L446.6,287.6L442,291.6L440.7,293.9L439.9,296.7L438.4,299.9L438.2,301.6L440.5,304.3L440.2,306.5L439.5,309.7L437.2,312L434.8,313.2L434.8,316.7L436.1,317.2L439.1,316.9L443.5,314.4L446.2,311.1L444.5,308.1L444.3,307.5L444.7,306.8L448.1,303.5L452,301.5L457.7,301.1L464.5,302.2L465.2,302.7L464.8,304.8L465.4,307.8L466.7,309.9L465,316L466.3,317.8L468.2,320L469.7,322.1L471.8,324L473.7,327.1L474.4,328.9L471.3,332.1L466.3,335L465.6,336.8L465.7,338.9L466.3,340.6L469.1,342.8L472.1,347.6L474.1,351.9L478.3,356.1L479.4,357.3L479.2,358.3L477.9,360.1L476.6,365.9L474.8,366.9L472.9,367.2L467.6,371.5L465.3,370.9L461.9,371L459.6,372.4L459.7,375L461.9,377.5L463.1,380.1L463.7,382.9L466.1,384.9L469.4,386.1L471.3,386.2L472.5,387L473.3,387.9L474.7,393.8L473.9,395.3L472.1,395.9L471,398.3L468.8,401.9L467.6,404.7L469,407.2L469.5,409.1L468.8,411L469.8,413.9L472.4,416.8L479.2,421L485.5,424.3L487.6,424.9L496.1,422.8L497.6,423L498.7,425.5L499.1,427.2L498.2,429.8L495.9,433.4L493.3,436.3L491.8,438.7L492.1,440.9L492.2,443.8L490.2,444.7L490,444.1L489.2,443.6L488.5,443.9L488,444.5L487.9,445.6L483.5,447.5L480.4,449.4L468.4,460.9L462.9,464.3L461.8,466.3L460.7,470.1L457.4,473.3L454.5,474.8L447.4,476.4L440.2,479.8L437.1,478.4L428.7,478.5L423.5,474.4L413.4,471.8L410.2,465.7L405.7,465.4L402.7,465.6L401,464.7L400.4,462.6L400.4,460.6L397.3,461.5L394.8,461.5L393.3,462.3L392.3,463.2L390.9,462.6L390.1,462.9L390.2,464L387.2,464.3L384.1,463.6L375.8,460.4L374.6,460L368.9,458.8L366.6,457.5L364.7,454.4L363.2,453.5L362.4,452.8L357.1,454.4L355.2,456.8L352.3,459.7L332.5,473.7L328.9,479.4L324.6,488L324.4,491.9L326.1,504.6L330.2,511.2L330.8,512.8L328.4,512.8L324.6,512L321.5,511L318.7,511.5L315.8,512.9L313.2,513.7L311.5,514L310.3,514.7L309.7,516.3L309.6,517.4L306.4,517.2L299.1,514.9L292.6,513.3L288.7,515.1L286.2,516.7L284.5,516.5L283.2,514.8L282.3,513L279.7,511.5L273.9,509.1L274.3,508L275.2,506.4L275.2,505.4L274,504L268.7,502.4L266.3,502L264.6,503.1L263.4,504.4L260.4,499.5L258.4,498.5L255.1,498.3L251.5,496.8L247.7,495L238.4,491.9L235.8,491.6L234.9,492L234.2,493.9L233.8,499L233.4,499.6L229.1,499.8L223.8,499.1L221.3,499.4L219.1,499.4L217.1,498L208,499.6L206.5,498.8L204.3,496.5L201.8,494.6L199.9,493.7L198.2,492.6L196.7,492.4L194.6,493.4L191.4,493.9L188.9,493.8L187.5,494L181.7,488.3L180.9,486.7L177.9,486.3L174.3,486.2L165.2,482.5L161,480.5L160.5,479.3L160.5,478.4L159.8,478.6L158.6,480.3L157.9,481.6L157,481.9L155.7,481.7L154.5,480.9L153.7,479.9L154.5,478.1L155.9,475.9L156.5,473.4L156.4,471.2L154.1,469.8L150.7,469.2L148.3,469L145,467.7L143.4,466.8L142,464.3L141.9,462.5L148,461L153.6,454.4L158.9,430.5L162.7,402.1L165.4,396.7L168.9,395.2L166.1,391.3L164.3,393.2L163.6,395.4L162.7,396.5L164.7,370.1L166.2,360.3L168.8,350.2L174.1,354.2L178.4,358.3L180.7,361.9L183.6,373.7L185.6,376.2L188.9,378.6L187.6,376L185.3,373.9L181.9,358.1L179.8,353.6L176.4,349.9L165.5,341.9L164.4,340.3L163.9,337.3L167.5,337.4L170.7,338.9L170.3,337.3L169.3,335.5L168,329L166.7,313.8L166.9,311.1L166.3,307.9L162.8,307.3L160.1,307.1L157.1,305.8L142.2,296.8L137.1,287.5L131.8,280.6L130.6,277.5L130.7,274.5L133.5,268L131,263.9L128.7,263.1L126.7,261.1L128.6,257.7L130.1,255.5L133.1,254.9L137.1,255.7L140.9,257.6L143.8,258.1L135.1,252.9L120.8,254.6L117.7,254L115.1,252.8L114.2,248.9L116.2,247.2L118,243.9L115.9,241.7L113.2,240.8L109,240.9L105.1,241.6L104.1,240.2L106.4,236.6L104.4,235.3L101.7,236L97.8,236.6L94,235.6L90.4,231.5L88.1,231.5L86.5,232L84,230.4L81.5,230L79.7,230.5L77.3,228.2L62.5,223.4L56.1,222.8L50.2,225L47,224.3L44.5,221.2L42.6,216.1L33.1,212.1L35,209.4L39.4,208.8L44.4,207L46.3,204.7L42.4,202L39.4,201.3L38.1,200.3L36.9,197.9L38.7,196.7L39.9,197.3L43.4,197.7L49.6,197.1L47.4,194.7L44.9,194.1L43.8,193.5L39,193.2L36.7,194.1L31.6,193.7L30.4,191L30,188.8L31.5,183.7L38.7,179.2L56.5,174.1L64.1,174.8L69.5,173.9L75.9,170.8L78.6,168.1L87.7,166.5L96.3,169.3L104.3,180.2L108.1,183.8L117.3,177.5L131.2,177.7L134,181.2L135.1,178.3L137.7,174.7L139.7,176.3L140.8,178.5L155.3,177.9L157.6,177.3L153.7,174.7L150.6,168.5L149.9,145.7L145.8,139.3L141.2,129L139,123L138.9,120.8L139.6,117.8L145.3,117.9L149.6,118.7L158,116.4L162.1,118L161.8,122.8L163.1,128.8L164.6,131.6L166.6,135L173.4,134.6L180.7,136.6L189.9,136.9L203.4,140.3L209.1,138.3L214.7,134.1L225.3,131.4L226.2,130L220.1,130.6L214.4,128L213.7,125.1L214.4,122.6L216.6,116.7L232.9,107.4L244.4,104.5L256.5,99.4L262.6,94.1L266.7,87.2L268,85.7L269.7,84.4L268,82L269.1,55.6L270.3,50.8L272.6,46.9L276.3,43.9L281.7,40.5L301.8,36L304.8,34.2L305.2,37L306.7,40.7L307.7,42.6L306.9,45.2L307.5,47.4L310.3,51.2L313.6,54.9L316.6,57.2L317.6,56.9L319.8,56.3L323.6,53.9L326.8,53.2L328.6,55L329.5,56L331.6,60.1L332.1,64.4L333.1,67.9L334.7,69.3L340.7,69.8L345.1,71.2L346.4,72.3L347.9,80.1L348.7,81.2L349.9,80.3L351,79.1L352.5,78.9L355.1,79.4L358.6,79.5L362.1,80.3L367,84.8L366.9,86.3L365.9,88.8L365.5,90.9L366.3,91.7L367.7,93.7L367.4,96.2L366.1,97.9L365.6,99.3L365.6,100.2L366.1,100.9L367.1,101.6L374.3,102.5L381,101.6L385.2,99.1L385.9,96.6L387.1,93.6L389.5,91.1L391.3,90.2L392.9,91.3L390.2,101.7L392.1,104.3L392.4,108.3L393.2,111.7L395.5,111.6L398.4,112.2L400.4,113.5L402.9,115.6L406.2,117.5L408.7,118.1L409.5,119.7L411.5,121.5L414.5,125.3L417.2,127.8L418.6,127.8L421.2,126.8L425,126.2L428,126.3L429.2,128.2L432.2,129L433.1,129.8L434.4,131.1L436.3,131.6L438.7,131.1L440.3,129.3L442.6,128.5L444.9,128.8L446.3,129.8L448.9,131.2L450.2,130.9L453.1,131.8L456.1,134.5L457.2,137.4L457.6,138.9L458.8,140.6L463.5,148.1L465.2,148.5L466.8,147.3L467.9,145.7L469.5,145.4L472,146.1L473.6,147L474.4,150.3L475,150.9L476,150.2L478.1,150L481.1,150.8L485.4,149.9L488.8,148.5L490.6,148.6L493.4,152.4L496.7,153.8L503.7,154.9L511.3,156.7L514.3,158.2L516.4,158.9L516.6,163.9L516,164.7L508.4,174.6L505.2,178.2L503.6,183.3L502.4,191L500.2,198.4L496.8,205.4L495.6,210.7L496.5,214.1L496,219.6L494,227L493.6,232.7L494.9,236.3ZM165.1,330.1L163.7,334.8L161.3,330.5L157.9,326.6L157.2,323.1L157.2,322.2L161.2,324.7Z" fill="#1f1545" stroke="#ff6fd8" stroke-width="1.6" vector-effect="non-scaling-stroke"/>
+<g class="cities"><g class="city" transform="translate(298.3 165.6)"><circle r="3" fill="#f7eef3"/><text x="8" y="4" text-anchor="start">Paris</text></g><g class="city" transform="translate(324.9 62.1)"><circle r="3" fill="#f7eef3"/><text x="8" y="4" text-anchor="start">Lille</text></g><g class="city" transform="translate(501.9 181.8)"><circle r="3" fill="#f7eef3"/><text x="8" y="4" text-anchor="start">Strasbourg</text></g><g class="city" transform="translate(151 258)"><circle r="3" fill="#f7eef3"/><text x="8" y="4" text-anchor="start">Nantes</text></g><g class="city" transform="translate(187.7 387.3)"><circle r="3" fill="#f7eef3"/><text x="8" y="4" text-anchor="start">Bordeaux</text></g><g class="city" transform="translate(392 337.7)"><circle r="3" fill="#f7eef3"/><text x="8" y="4" text-anchor="start">Lyon</text></g><g class="city" transform="translate(264 452.3)"><circle r="3" fill="#f7eef3"/><text x="-8" y="4" text-anchor="end">Toulouse</text></g><g class="city" transform="translate(412.1 468.3)"><circle r="3" fill="#f7eef3"/><text x="8" y="4" text-anchor="start">Marseille</text></g><g class="city" transform="translate(483.5 446.8)"><circle r="3" fill="#f7eef3"/><text x="8" y="4" text-anchor="start">Nice</text></g><g class="city" transform="translate(355.8 451.9)"><circle r="3" fill="#f7eef3"/><text x="8" y="4" text-anchor="start">Montpellier</text></g><g class="city" transform="translate(318.8 499.1)"><circle r="3" fill="#f7eef3"/><text x="8" y="4" text-anchor="start">Perpignan</text></g><g class="city c2" transform="translate(322.9 474.1)"><circle r="3" fill="#f7eef3"/><text x="-8" y="4" text-anchor="end">Narbonne</text></g><g class="city c2" transform="translate(374 440.1)"><circle r="3" fill="#f7eef3"/><text x="8" y="4" text-anchor="start">Nîmes</text></g><g class="city c2" transform="translate(298.3 472.6)"><circle r="3" fill="#f7eef3"/><text x="-8" y="4" text-anchor="end">Carcassonne</text></g><g class="city c2" transform="translate(349 462.7)"><circle r="3" fill="#f7eef3"/><text x="8" y="4" text-anchor="start">Sète</text></g></g>
+<g class="pin" data-pin="bez" transform="translate(331 465.8)" tabindex="0" role="button" aria-label="IUT de Béziers"><circle r="30" fill="url(#pg)"/><circle class="pul" r="7" fill="none" stroke="#ff8cbf" stroke-width="2"/><circle r="6.5" fill="#ff8cbf"/><text x="-14" y="-12" class="ml" text-anchor="end">IUT de Béziers</text></g>
+</svg><div class="mapctl"><button class="ha" data-z="out" aria-label="Dézoomer">−</button><button class="ha" data-z="in" aria-label="Zoomer">+</button></div></div>
+<div class="mapinfo"><span class="lbl">Où j'étudie</span><h3>IUT de Béziers</h3><p>3 place du 14 Juillet, 34500 Béziers, dans l'Hérault, entre Montpellier et Narbonne. En bus : ligne B, arrêt Médiathèque-14 Juillet.</p>
+
+<div class="mapbtns"><a class="pill red" href="https://www.google.com/maps/dir/?api=1&destination=IUT+de+B%C3%A9ziers%2C+3+place+du+14+Juillet%2C+34500+B%C3%A9ziers" target="_blank" rel="noopener">Itinéraire depuis chez vous ↗</a><a class="pill" href="https://www.google.com/maps/search/?api=1&query=IUT+de+B%C3%A9ziers%2C+3+place+du+14+Juillet%2C+34500+B%C3%A9ziers" target="_blank" rel="noopener">Ouvrir dans Google Maps ↗</a></div></div></div></div>` : ''}
+  ${c.acc === 'DOMS' ? accHTML(DOMS, c.id) : ''}
+ </section>`).join('') + '<div class="drop" data-side="r"></div>';
+
+/* ---------- lines ---------- */
+const LINES = [];
+const heroItems = ['card:photo','card:hello','nebula','surrealisme','colonel','cotrajet','flavours','fabi','embuscade','banc','indonesie','lyon','samourai:7','samourai','samourai:8','transformation','mexique','hypnesia','kfc','barret','mclaren','samourai:3','samourai:4','portrait','dragon','samourai:5'];
+function itemSpec(s){
+  if (s === 'card:photo') return {kind:'photo', ar:.78, cap:''};
+  if (s === 'card:hello') return {kind:'hello', ar:.78, cap:''};
+  if (s.startsWith('tool:')) return {kind:'tool', ar:1.05, n:+s.slice(5)};
+  const [id, ix] = s.split(':'); const p = P[id], i = ix ? +ix : 0;
+  if (!p.i.length) return {kind:'proto', id, i:0, ar:.52, cap:p.t, sub:p.c};
+  if (ix && p.ic && p.ic[i]) return {kind:'img', id, i, ar:AR[p.i[i]], img:p.i[i], cap:p.ic[i][0], sub:p.ic[i][1]};
+  return {kind:'img', id, i, ar:AR[p.i[i]], img:p.i[i], cap:p.t, sub:ix ? (id === 'embuscade' ? 'Planche ' + (i + 1) + ' / 6' : 'Visuel ' + (i + 1)) : p.c + (id === 'embuscade' ? ' · 6 planches' : '')};
+}
+function inner(sp){
+  if (sp.kind === 'img') return `<span class="fr" style="height:var(--h);background:${COL[sp.img] || '#2a2040'}"><img ${srcs(sp.img)} alt="${esc(sp.cap)}" loading="${sp.eager ? 'eager' : 'lazy'}" ${sp.eager ? 'fetchpriority="high"' : 'decoding="async"'}></span><span class="cap">${esc(sp.cap)}<small>${esc(sp.sub)}</small></span>`;
+  if (sp.kind === 'proto') return `<span class="fr proto" style="height:var(--h)"><span class="lbl">Maquette Figma</span><b>${esc(sp.cap)}</b><span class="pnote">Application mobile : composants, pages et boutons reliés.</span><span class="pgo">Ouvrir le projet →</span></span><span class="cap">${esc(sp.cap)}<small>${esc(sp.sub)}</small></span>`;
+  if (sp.kind === 'photo') return `<span class="fr polar" style="height:var(--h)"><img src="${tsrc('photo')}" alt="Tonio Cocco" fetchpriority="high"><span class="lbl">Mon profil →</span></span>`;
+  if (sp.kind === 'hello') return `<span class="fr card" style="height:var(--h)"><b>Bonjour,</b><p>Je suis Tonio, étudiant en communication visuelle et réalisation graphique, et passionné de voyages.</p></span>`;
+  const [a, n, s, bg, fg] = TOOLS[sp.n];
+  return `<span class="fr tool" style="height:var(--h)"><i style="background:${bg};color:${fg};border-color:${fg}">${esc(a)}</i><span><b>${n}</b><small>${s}</small></span></span>`;
+}
+document.querySelectorAll('[data-line]').forEach(el => {
+  const key = el.dataset.line, ch = key === 'hero' ? null : CH[+key];
+  const specs = (ch ? ch.it : heroItems).map(itemSpec);
+  if (!ch) specs.filter(x => x.kind === 'img').slice(0, 8).forEach(x => x.eager = true);
+  const keep = el.querySelector('.hnav'), fl = el.querySelector('.floor'); el.innerHTML = `<div class="scroller"><div class="track"><svg class="wire" aria-hidden="true"><path class="gl"/><path class="ln"/></svg>${specs.map((sp, j) => {
+    const lab = sp.kind === 'img' ? `Ouvrir ${esc(sp.cap)}` : sp.kind === 'tool' ? TOOLS[sp.n][1] : '';
+    const tag = sp.kind === 'img' || sp.kind === 'photo' || sp.kind === 'proto' ? 'button' : 'div';
+    const attrs = sp.kind === 'img' || sp.kind === 'proto' ? `data-open="${sp.id}" data-i="${sp.i}" aria-label="${lab}"` : sp.kind === 'photo' ? 'data-profile aria-label="Voir mon profil"' : '';
+    return `<${tag} class="it" ${attrs}>${CLIP}${inner(sp)}</${tag}>`;
+  }).join('')}${ch?.note ? `<span class="note lbl">${esc(ch.note[1])}</span>` : ''}</div></div>`; if (keep) el.append(keep); if (fl) el.prepend(fl);
+  LINES.push({el, ch, specs, hz: !!ch?.hz, baseH: +el.dataset.h});
+});
+
+function layout(){
+  const vw = innerWidth, mob = vw < 900;
+  for (const L of LINES){
+    const track = L.el.querySelector('.track'), items = [...track.querySelectorAll('.it')];
+    let H = Math.round(L.baseH * Math.min(1, Math.max(.62, vw / 1400)) * (mob ? .86 : 1)); if (L.ch?.tools) H = Math.max(H, 132); if (mob && L.ch && L.specs.some(x => x.kind === 'proto')) H = Math.max(H, 330);
+    let fits = true;
+    if (L.ch?.hz && !mob && !reduce){ const st = L.el.closest('.sticky'), hd = st.querySelector('.head').offsetHeight; const avail = innerHeight - 64 - 12 - hd - 30 - 54 - 34 - 70 - 24; fits = avail >= 150; if (fits) H = Math.min(H, Math.floor(avail)); }
+    const gap = Math.max(28, H * .16), pad = Math.max(vw * .06, 18);
+    const ws = L.specs.map(s => H * (s.kind === 'hello' && mob ? 1.25 : s.kind === 'proto' && mob && !L.ch ? .82 : s.ar));
+    const natural = ws.reduce((a, b) => a + b, 0) + gap * (ws.length - 1) + pad * 2;
+    const W = Math.max(vw, natural);
+    const extra = (W - natural) / (ws.length + 1);
+    const nSeg = Math.max(1, Math.round(W / Math.max(vw, 900))), segL = W / nSeg;
+    const sag = Math.min(70, segL * .035), y0 = 34, capH = L.ch?.tools ? 0 : 54;
+    let x = pad + extra, maxB = 0;
+    const yAt = xx => { const u = (xx % segL) / segL; return y0 + sag * 4 * u * (1 - u); };
+    items.forEach((it, j) => {
+      const w = ws[j], cx = x + w / 2, y = yAt(cx);
+      it.style.cssText = `left:${x}px;top:${y + 10}px;width:${w}px;--h:${H}px`;
+      it._cx = cx; maxB = Math.max(maxB, y + 10 + H + capH);
+      x += w + gap + extra;
+    });
+    const note = track.querySelector('.note');
+    if (note && items[L.ch.note[0]]){ const t = items[L.ch.note[0]]; note.style.left = parseFloat(t.style.left) + 'px'; note.style.top = (parseFloat(t.style.top) + H + capH + 6) + 'px'; maxB = Math.max(maxB, parseFloat(t.style.top) + H + capH + 36); }
+    track.style.width = W + 'px'; track.style.height = (maxB + 16) + 'px';
+    const svg = track.querySelector('svg.wire'); svg.setAttribute('width', W); svg.setAttribute('height', maxB);
+    const path = svg.querySelector('.ln'), glp = svg.querySelector('.gl');
+    let d = `M0 ${y0}`; for (let q = 0; q < nSeg; q++) d += ` Q ${segL * (q + .5)} ${y0 + sag * 2} ${segL * (q + 1)} ${y0}`;
+    path.setAttribute('d', d); glp.setAttribute('d', d);
+    track.querySelectorAll('.knot').forEach(k => k.remove());
+    for (let q = 1; q < nSeg; q++) track.insertAdjacentHTML('beforeend', `<i class="knot" style="left:${segL * q}px;top:${y0}px"></i>`);
+    L.len = path.getTotalLength(); path.style.strokeDasharray = glp.style.strokeDasharray = L.len;
+    L.W = W; L.path = path; L.gl = glp;
+    const sec = L.el.closest('.hz');
+    if (sec){
+      L.pinned = !mob && !reduce && fits && W > vw;
+      sec.style.height = L.pinned ? (innerHeight + W - vw) + 'px' : '';
+      L.el.querySelector('.scroller').style.overflowX = L.pinned ? 'hidden' : '';
+      if (!L.pinned) track.style.transform = '';
+    }
+    const scr = L.el.querySelector('.scroller'), over = W > vw + 2 && !L.pinned;
+    if (!sec || !L.pinned) scr.style.overflowX = over ? 'auto' : '';
+    scr.classList.toggle('canx', over);
+    L.el.closest('section')?.classList.toggle('hasx', over);
+  }
+  document.querySelectorAll('.drop').forEach(d => {
+    const r = d.dataset.side === 'r', w = d.clientWidth, h = d.clientHeight;
+    const xa = r ? w - 2 : 2, xb = r ? w * .94 : w * .06;
+    const dd = `M${xa} 0 C ${xa} ${h * .6}, ${xb} ${h * .4}, ${xb} ${h}`;
+    d.innerHTML = `<svg aria-hidden="true"><path class="gl" d="${dd}" fill="none" stroke-linecap="round"/><path class="wd" d="${dd}" fill="none" stroke="var(--red)" stroke-width="2.2" stroke-linecap="round"/></svg>`;
+    const p = d.querySelector('.wd'), g = d.querySelector('.gl'); d._len = p.getTotalLength(); p.style.strokeDasharray = g.style.strokeDasharray = d._len; d._p = p; d._g = g;
+  });
+  DROPS = []; tick(true);
+}
+
+/* ---------- swing physics ---------- */
+const SW = new Map();
+let running = false;
+function kick(el, v){ if (reduce) return; const s = SW.get(el) || {a:0, v:0}; s.v += v; SW.set(el, s); if (!running){ running = true; requestAnimationFrame(loop); } }
+function loop(){
+  let busy = false;
+  for (const [el, s] of SW){
+    s.v += -s.a * .045; s.v *= .935; s.a += s.v;
+    s.a = Math.max(-16, Math.min(16, s.a));
+    if (Math.abs(s.a) < .02 && Math.abs(s.v) < .02){ s.a = s.v = 0; el.style.transform = ''; continue; }
+    busy = true; el.style.transform = `rotate(${s.a.toFixed(2)}deg)`;
+  }
+  running = busy; if (busy) requestAnimationFrame(loop);
+}
+document.addEventListener('pointermove', e => {
+  const it = e.target.closest('.it'); if (it) kick(it, e.movementX * .05);
+}, {passive:true});
+
+/* ---------- scroll: draw thread, rail, pinned film ---------- */
+const secs = [...document.querySelectorAll('[data-ch]')];
+$('#rail').insertAdjacentHTML('beforeend', secs.map(s => `<li><a href="#${s.id}">${esc(s.dataset.ch)}</a></li>`).join(''));
+const railLinks = [...document.querySelectorAll('#rail a')];
+let lastY = scrollY, DROPS = [], tq = false;
+const bar = $('#bar'), knob = $('#knob');
+function tick(force){
+  const y = scrollY, vh = innerHeight, dy = y - lastY; lastY = y;
+  const doc = document.documentElement.scrollHeight - vh;
+  if (!DROPS.length) DROPS = [...document.querySelectorAll('.drop')];
+  // 1) lectures
+  const lr = LINES.map(L => L.pinned ? L.el.closest('.hz').getBoundingClientRect() : L.el.getBoundingClientRect());
+  const dr = DROPS.map(d => d._p ? d.getBoundingClientRect() : null);
+  let cur = 0; for (let k = 0; k < secs.length; k++){ if (secs[k].getBoundingClientRect().top < vh * .45) cur = k; else break; }
+  // 2) écritures
+  const pc = (doc > 0 ? y / doc * 100 : 0) + '%'; bar.style.width = pc; knob.style.height = pc;
+  LINES.forEach((L, n) => {
+    const r = lr[n];
+    if (L.pinned){
+      const p = Math.min(1, Math.max(0, -r.top / (r.height - vh)));
+      L.el.querySelector('.track').style.transform = `translate3d(${-p * (L.W - innerWidth)}px,0,0)`;
+      L.path.style.strokeDashoffset = L.gl.style.strokeDashoffset = 0;
+      if (r.top < 0 && r.bottom > vh && dy) L.el.querySelectorAll('.it').forEach((it, j) => kick(it, -dy * .02 * (.7 + .3 * Math.sin(j))));
+      return;
+    }
+    if (r.bottom < -50 || r.top > vh + 50){ const o = r.top > vh ? L.len : 0; if (L._o !== o){ L._o = o; L.path.style.strokeDashoffset = L.gl.style.strokeDashoffset = o; } return; } L._o = -1;
+    const p = reduce ? 1 : Math.min(1, Math.max(0, (vh * .95 - r.top) / (vh * .55)));
+    L.path.style.strokeDashoffset = L.gl.style.strokeDashoffset = L.len * (1 - p);
+    if (dy && !force) L.el.querySelectorAll('.it').forEach((it, j) => kick(it, -dy * .012 * (.6 + .4 * Math.sin(j * 1.7))));
+  });
+  DROPS.forEach((d, n) => { const r = dr[n]; if (!r || r.bottom < -50 || r.top > vh + 50) return; const p = reduce ? 1 : Math.min(1, Math.max(0, (vh * .9 - r.top) / (r.height + vh * .15))); d._p.style.strokeDashoffset = d._g.style.strokeDashoffset = d._len * (1 - p); });
+  railLinks.forEach((a, k) => a.classList.toggle('on', k === cur && y > vh * .4));
+}
+addEventListener('scroll', () => { if (!tq){ tq = true; requestAnimationFrame(() => { tq = false; tick(); }); } }, {passive:true});
+let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(layout, 120); });
+
+
+/* ---------- hero line: drag, arrows, progress ---------- */
+{
+  const sc = document.querySelector('.free .scroller'), hb = $('#hbar'), hc = $('#hcount');
+  const n = document.querySelectorAll('.free .it[data-open]').length;
+  hc.textContent = innerWidth < 600 ? 'Glissez le fil' : 'Glissez le fil ou utilisez les flèches';
+  const upd = () => { const max = sc.scrollWidth - sc.clientWidth; const p = max > 0 ? sc.scrollLeft / max : 1; hb.style.width = Math.max(8, p * 100) + '%'; document.querySelectorAll('.hnav .ha').forEach(b => b.disabled = (+b.dataset.h < 0 ? sc.scrollLeft < 4 : sc.scrollLeft > max - 4)); };
+  let last = 0;
+  sc.addEventListener('scroll', () => { const dx = sc.scrollLeft - last; last = sc.scrollLeft; upd(); if (dx) sc.querySelectorAll('.it').forEach((it, j) => kick(it, -dx * .02 * (.6 + .4 * Math.sin(j * 1.7)))); }, {passive:true});
+  document.querySelectorAll('.hnav .ha').forEach(b => b.addEventListener('click', () => sc.scrollBy({left: +b.dataset.h * sc.clientWidth * .7, behavior: reduce ? 'auto' : 'smooth'})));
+  let down = null, moved = false, dsc = null;
+  document.querySelectorAll('.line .scroller').forEach(el => {
+    el.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' || e.button || el.scrollWidth <= el.clientWidth + 2 || getComputedStyle(el).overflowX === 'hidden') return; dsc = el; down = {x: e.clientX, l: el.scrollLeft}; moved = false; });
+    el.addEventListener('click', e => { if (moved){ e.stopPropagation(); e.preventDefault(); moved = false; } }, true);
+    if (el !== sc){ let lx = 0; el.addEventListener('scroll', () => { const dx = el.scrollLeft - lx; lx = el.scrollLeft; if (dx) el.querySelectorAll('.it').forEach((it, j) => kick(it, -dx * .02 * (.6 + .4 * Math.sin(j * 1.7)))); }, {passive:true}); }
+  });
+  addEventListener('pointermove', e => { if (!down) return; const dx = e.clientX - down.x; if (Math.abs(dx) > 6){ moved = true; dsc.classList.add('drag'); } if (moved) dsc.scrollLeft = down.l - dx; });
+  addEventListener('pointerup', () => { if (!down) return; down = null; const d = dsc; setTimeout(() => d.classList.remove('drag'), 0); });
+  addEventListener('resize', upd); setTimeout(upd, 300);
+}
+
+/* ---------- ambient background ---------- */
+{
+  const root = document.documentElement, sun = document.querySelector('.sun2'), fl = document.querySelector('.floor'), cg = $('#cglow');
+  let ticking = false;
+  const g1 = document.querySelector('.bgfx .g1'), g2 = document.querySelector('.bgfx .g2');
+  const amb = () => { ticking = false; const doc = root.scrollHeight - innerHeight, pp = doc > 0 ? scrollY / doc : 0; if (g1){ g1.style.transform = `translate3d(0,${(pp * 60).toFixed(2)}vh,0)`; g2.style.transform = `translate3d(0,${(-pp * 40).toFixed(2)}vh,0)`; } if (!reduce && scrollY < innerHeight * 1.4) sun.style.transform = `translateY(calc(24% + ${(scrollY * .18).toFixed(1)}px))`; };
+  addEventListener('scroll', () => { if (!ticking){ ticking = true; requestAnimationFrame(amb); } }, {passive:true}); amb();
+  if ('IntersectionObserver' in window){ const io = new IntersectionObserver(es => es.forEach(en => fl.classList.toggle('off', !en.isIntersecting))); io.observe(fl); }
+  if (matchMedia('(pointer:fine)').matches && !reduce){ cg.classList.add('on'); addEventListener('pointermove', e => { cg.style.transform = `translate3d(${e.clientX}px,${e.clientY}px,0)`; }, {passive:true}); }
+}
+
+/* ---------- carte ---------- */
+{
+  const svg = $('#fmap');
+  if (svg){
+    const V = {all:[0,0,600,600], reg:[252,395,140,140], bez:[306.0,440.8,50,50]};
+    const pins = [...svg.querySelectorAll('.pin,.city')].map(g => { const m = g.getAttribute('transform').match(/translate\(([\d.]+) ([\d.]+)\)/); return [g, m[1], m[2]]; });
+    let cur = [0,0,600,600], anim;
+    const set = v => { cur = v; svg.setAttribute('viewBox', v.map(n => n.toFixed(1)).join(' ')); const k = (v[2] / 600).toFixed(4); pins.forEach(([g, x, y]) => g.setAttribute('transform', `translate(${x} ${y}) scale(${k})`)); svg.classList.toggle('zin', v[2] < 300); };
+    const to = (target, key) => {
+      const from = cur.slice(), t0 = performance.now(), D = reduce ? 1 : 700;
+      cancelAnimationFrame(anim);
+      const step = now => { const t = Math.min(1, (now - t0) / D), e = 1 - (1 - t) ** 3; set(from.map((f, i) => f + (target[i] - f) * e)); if (t < 1) anim = requestAnimationFrame(step); };
+      anim = requestAnimationFrame(step);
+      document.querySelectorAll('.mapbtns [data-z]').forEach(b => b.setAttribute('aria-pressed', b.dataset.z === key));
+    };
+    const zoom = f => { const w = Math.max(30, Math.min(600, cur[2] * f)); const cx = cur[0] + cur[2] / 2, cy = cur[1] + cur[3] / 2; to([cx - w / 2, cy - w / 2, w, w], ''); };
+    document.querySelectorAll('[data-z]').forEach(b => b.addEventListener('click', () => { const z = b.dataset.z; if (z === 'in') zoom(.5); else if (z === 'out') zoom(2); else to(V[z], z); }));
+    svg.querySelector('.pin').addEventListener('click', () => to(V.bez, 'bez'));
+    svg.addEventListener('wheel', e => { if (!e.ctrlKey && !e.metaKey) return; e.preventDefault(); zoom(e.deltaY > 0 ? 1.25 : .8); }, {passive:false});
+    const P2 = new Map(); let dr = null, pz = null;
+    const pt = (x, y) => { const r = svg.getBoundingClientRect(), k = cur[2] / r.width; return [cur[0] + (x - r.left) * k, cur[1] + (y - r.top) * k]; };
+    const zoomAt = (f, cx, cy) => { const w = Math.max(20, Math.min(600, cur[2] * f)), r = w / cur[2]; set([cx - (cx - cur[0]) * r, cy - (cy - cur[1]) * r, w, w]); };
+    svg.addEventListener('pointerdown', e => { if (e.target.closest('.pin') && e.pointerType === 'mouse') return; P2.set(e.pointerId, [e.clientX, e.clientY]); svg.setPointerCapture(e.pointerId);
+      if (P2.size === 1) dr = {x:e.clientX, y:e.clientY, v:cur.slice()};
+      if (P2.size === 2){ const [a, b] = [...P2.values()]; pz = {d:Math.hypot(a[0] - b[0], a[1] - b[1]), w:cur[2]}; dr = null; } });
+    svg.addEventListener('pointermove', e => { if (!P2.has(e.pointerId)) return; P2.set(e.pointerId, [e.clientX, e.clientY]);
+      if (P2.size === 2 && pz){ const [a, b] = [...P2.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]); const [cx, cy] = pt((a[0] + b[0]) / 2, (a[1] + b[1]) / 2); zoomAt((pz.w * pz.d / d) / cur[2], cx, cy); }
+      else if (dr){ const k = cur[2] / svg.clientWidth; set([dr.v[0] - (e.clientX - dr.x) * k, dr.v[1] - (e.clientY - dr.y) * k, cur[2], cur[3]]); } });
+    const up = e => { P2.delete(e.pointerId); if (P2.size < 2) pz = null; if (P2.size === 1){ const [a] = [...P2.values()]; dr = {x:a[0], y:a[1], v:cur.slice()}; } if (!P2.size) dr = null; };
+    svg.addEventListener('pointerup', up); svg.addEventListener('pointercancel', up);
+    svg.addEventListener('dblclick', e => { const [cx, cy] = pt(e.clientX, e.clientY); zoomAt(.5, cx, cy); });
+  }
+}
+
+/* ---------- préchargement discret des vignettes ---------- */
+addEventListener('load', () => {
+  const go = () => { const seen = new Set(); document.querySelectorAll('.it img[srcset]').forEach(im => { if (im.complete || seen.has(im.currentSrc || im.src)) return; seen.add(im.src); const p = new Image(); p.sizes = im.sizes; p.srcset = im.srcset; p.src = im.getAttribute('src'); }); };
+  const c = navigator.connection; if (c && (c.saveData || /2g/.test(c.effectiveType || ''))) return;
+  const later = () => (window.requestIdleCallback || (f => setTimeout(f, 1200)))(go);
+  const it = document.getElementById('intro'); if (it && !it.classList.contains('out')) { const w = setInterval(() => { if (!document.getElementById('intro') || document.getElementById('intro').classList.contains('out')) { clearInterval(w); setTimeout(later, 1500); } }, 500); } else later();
+});
+/* ---------- hints ---------- */
+let pop = null;
+const closePop = () => { pop?.remove(); pop = null; };
+document.addEventListener('click', e => {
+  const h = e.target.closest('.hint');
+  if (h){ e.preventDefault(); const same = pop && pop._h === h; closePop(); if (same) return;
+    const [when, title, txt] = HINTS[h.dataset.h];
+    pop = document.createElement('div'); pop.className = 'pop'; pop.setAttribute('role', 'dialog'); pop._h = h;
+    pop.innerHTML = `<small>${esc(when)}</small><b>${esc(title)}</b>${esc(txt)}`;
+    document.body.append(pop);
+    const r = h.getBoundingClientRect(), pw = pop.offsetWidth;
+    pop.style.left = Math.max(16, Math.min(innerWidth - pw - 16, r.left + r.width / 2 - pw / 2)) + 'px';
+    pop.style.top = (r.bottom + scrollY + 10) + 'px'; return; }
+  if (pop && !e.target.closest('.pop')) closePop();
+});
+
+/* ---------- accordion ---------- */
+document.querySelectorAll('.dom>button').forEach(b => b.addEventListener('click', () => {
+  const d = b.parentElement, open = !d.hasAttribute('open');
+  d.toggleAttribute('open', open); b.setAttribute('aria-expanded', open); d.querySelector('.body').hidden = !open;
+}));
+
+/* ---------- drawer ---------- */
+const dw = $('#dw'), ORDER = ['nebula','surrealisme','colonel','cotrajet','flavours','fabi','embuscade','banc','indonesie','lyon','samourai','transformation','mexique','hypnesia','kfc','barret','mclaren','portrait','dragon'].filter(k => P[k]);
+let cur = null, ci = 0;
+function openP(id, i = 0){
+  cur = id; ci = i; drawDw();
+  if ($('#idx').open) $('#idx').close();
+  if (!dw.open) dw.showModal();
+  if (location.hash !== '#p-' + id) history.replaceState(null, '', '#p-' + id);
+}
+function drawDw(){
+  const p = P[cur], k = ORDER.indexOf(cur), prev = P[ORDER[(k - 1 + ORDER.length) % ORDER.length]], next = P[ORDER[(k + 1) % ORDER.length]];
+  dw.innerHTML = `<div class="dw"><div class="dtop"><span>${esc(p.c)}</span><button class="x" data-close aria-label="Fermer">${ic('M6 6l12 12M18 6L6 18')}</button></div>
+   <h3>${esc(p.t)}</h3>
+   ${p.i.length ? `<button class="big" data-zoom aria-label="Agrandir"><img src="img/m/${p.i[ci]}.webp" srcset="img/m/${p.i[ci]}.webp 1000w, ${src(p.i[ci])} 1600w" sizes="(max-width:640px) 92vw, 580px" alt="${esc(p.t)}, visuel ${ci + 1}" decoding="async"></button>` : ''}
+   ${p.link ? `<p style="margin:${p.i.length ? '14px' : '4px'} 0 0"><a class="pill red" href="${esc(p.link)}" target="_blank" rel="noopener">Ouvrir la maquette sur Figma ↗</a></p>` : ''}
+   ${p.i.length > 1 ? `<div class="strip">${p.i.map((n, j) => `<button data-ci="${j}" aria-current="${j === ci}" aria-label="Visuel ${j + 1}"><img src="${tsrc(n)}" alt=""></button>`).join('')}</div>` : ''}
+   <dl><dt>Contexte</dt><dd>${esc(p.x)}</dd>${p.y ? `<dt>Année</dt><dd>${esc(p.y)}</dd>` : ''}${p.i.length > 1 ? `<dt>Visuels</dt><dd>${ci + 1} sur ${p.i.length}</dd>` : ''}</dl>
+   ${[['Détail', [p.w, p.h].filter(Boolean).join(' ')], ["Ce que j'ai appris", p.a]].filter(r => r[1]).map(([l, t]) => `<div class="why"><span class="lbl">${l}</span><p>${esc(t)}</p></div>`).join('')}
+   ${p.rel ? `<div class="rels">${(Array.isArray(p.rel[0]) ? p.rel : [p.rel]).filter(r => P[r[0]]).map(r => `<button class="rel" data-go="${r[0]}"><img src="${tsrc(P[r[0]].i[0])}" alt=""><span><small>${esc(r[1])}</small><b>${esc(P[r[0]].t)}</b><em>${esc(r[2])} →</em></span></button>`).join('')}</div>` : ''}
+   <div class="nextp"><button class="pill" data-go="${ORDER[(k - 1 + ORDER.length) % ORDER.length]}">← ${esc(prev.t)}</button><button class="pill" data-go="${ORDER[(k + 1) % ORDER.length]}">${esc(next.t)} →</button></div></div>`;
+}
+dw.addEventListener('click', e => {
+  if (e.target === dw) return dw.close();
+  const l = e.target.closest('a[data-close]'); if (l) { dw.close(); return; }
+  const b = e.target.closest('button'); if (!b) return;
+  if ('close' in b.dataset) dw.close();
+  else if ('ci' in b.dataset){ ci = +b.dataset.ci; drawDw(); }
+  else if (b.dataset.go){ openP(b.dataset.go); dw.scrollTop = 0; }
+  else if ('zoom' in b.dataset){ const z = document.createElement('button'); z.className = 'zoom'; z.setAttribute('aria-label', 'Fermer le zoom'); z.innerHTML = `<img src="${src(P[cur].i[ci])}" alt="">`; z.onclick = () => z.remove(); dw.append(z); z.focus(); }
+});
+dw.addEventListener('keydown', e => {
+  const z = dw.querySelector('.zoom'); if (z && e.key === 'Escape'){ e.preventDefault(); z.remove(); return; }
+  const n = P[cur].i.length;
+  if (e.key === 'ArrowRight' && n > 1){ ci = (ci + 1) % n; drawDw(); }
+  if (e.key === 'ArrowLeft' && n > 1){ ci = (ci - 1 + n) % n; drawDw(); }
+});
+dw.addEventListener('close', () => { if (location.hash.startsWith('#p-') || location.hash === '#profil') history.replaceState(null, '', location.pathname + location.search); });
+
+
+/* ---------- profile ---------- */
+function openProfile(){
+  const tl = ['but','bac','ag','visuelink','cap','strate'].map(k => { const [w, t, d] = HINTS[k]; return `<li><span class="lbl">${esc(w)}</span><b>${esc(t)}</b><p>${esc(d.replace(/ Tout est détaillé.*$/, ''))}</p></li>`; }).join('');
+  dw.innerHTML = `<div class="dw prof"><div class="dtop"><span>Profil</span><button class="x" data-close aria-label="Fermer">${ic('M6 6l12 12M18 6L6 18')}</button></div>
+   <div class="ptop"><img src="${tsrc('photo')}" alt="Tonio Cocco"><div><h3>Tonio Cocco</h3><p>Étudiant en communication visuelle et réalisation graphique, en 2e année de BUT MMI à l'IUT de Béziers. Originaire de Lyon, je suis à Béziers pour mes études.</p></div></div>
+   <p class="desc">Je dessine depuis que je suis petit. Formé d'abord à l'ébénisterie d'art puis à la réalisation graphique, j'ai appris le métier en atelier d'impression avant de rejoindre le BUT MMI. Travailleur, sérieux, patient et minutieux.</p>
+   <p class="desc">J'adore voyager : j'ai déjà découvert l'Indonésie (Bali, Jakarta), où je suis allé notamment pour le mariage de ma tante, le Japon (Tokyo, Kyoto, Nara), la Suède (Stockholm), l'Italie, où j'ai visité de nombreuses villes, l'Espagne (Barcelone, Madrid) et l'Allemagne. Chaque voyage nourrit mon regard et ma créativité.</p>
+   <h4>Parcours</h4><ul class="ptl">${tl}</ul>
+   <dl><dt>Passions</dt><dd>Dessin, création graphique, design, basket-ball, football, voyages</dd><dt>E-mail</dt><dd><a href="mailto:tonio.cocco@etu.umontpellier.fr">tonio.cocco@etu.umontpellier.fr</a></dd><dt>Téléphone</dt><dd>07 69 59 74 38</dd><dt>Origine</dt><dd>Lyon</dd><dt>Études</dt><dd>Béziers (34)</dd><dt>Mobilité</dt><dd>Véhiculé</dd><dt>Je recherche</dt><dd>De préférence une alternance de deux ans en communication visuelle et production graphique (2e et 3e année de BUT MMI), ou un stage du 5 avril au 18 juin.</dd></dl>
+   <div class="nextp"><a class="pill" href="#formation" data-close>Ma formation</a><a class="pill red" href="#contact" data-close>Me contacter</a></div></div>`;
+  if ($('#idx').open) $('#idx').close();
+  if (!dw.open) dw.showModal();
+  dw.scrollTop = 0;
+  if (location.hash !== '#profil') history.replaceState(null, '', '#profil');
+}
+/* ---------- index ---------- */
+const idx = $('#idx'), peek = $('#peek'); let icat = 'Tout';
+function drawIdx(){
+  const cats = ['Tout', ...new Set(ORDER.map(k => P[k].c))];
+  idx.innerHTML = `<div class="wrap"><div class="dtop"><span>Tous les projets</span><button class="x" data-close aria-label="Fermer">${ic('M6 6l12 12M18 6L6 18')}</button></div>
+   <div class="cats">${cats.map(c => `<button data-cat="${esc(c)}" aria-pressed="${c === icat}">${esc(c)}</button>`).join('')}</div>
+   ${ORDER.filter(k => icat === 'Tout' || P[k].c === icat).map(k => `<button class="row" data-open="${k}" data-peek="${P[k].i.length ? tsrc(P[k].i[0]) : ''}"><b>${esc(P[k].t)}</b><span>${esc(P[k].c)}${P[k].y ? ' · ' + P[k].y : ''}</span></button>`).join('')}</div>`;
+}
+$('#openIdx').onclick = () => { drawIdx(); idx.showModal(); };
+idx.addEventListener('click', e => {
+  if (e.target.closest('[data-close]')) return idx.close();
+  const c = e.target.closest('[data-cat]'); if (c){ icat = c.dataset.cat; drawIdx(); }
+});
+idx.addEventListener('pointermove', e => {
+  const r = e.target.closest('.row');
+  if (r && r.dataset.peek && matchMedia('(pointer:fine)').matches){ if (peek.getAttribute('src') !== r.dataset.peek) peek.src = r.dataset.peek; peek.style.left = e.clientX + 'px'; peek.style.top = e.clientY + 'px'; peek.style.opacity = 1; }
+  else peek.style.opacity = 0;
+});
+idx.addEventListener('close', () => peek.style.opacity = 0);
+idx.addEventListener('pointerleave', () => peek.style.opacity = 0);
+
+/* ---------- e-mail du contact : ajusté pour tenir sur une seule ligne ---------- */
+{
+  const a = document.querySelector('.mail a');
+  const fit = () => { if (!a) return; a.style.fontSize = ''; const box = a.parentElement.clientWidth; let fs = parseFloat(getComputedStyle(a).fontSize); while (a.scrollWidth > box && fs > 12){ fs -= 0.5; a.style.fontSize = fs + 'px'; } };
+  fit(); addEventListener('resize', fit); document.fonts && document.fonts.ready.then(fit);
+}
+/* ---------- open + cursor ---------- */
+document.addEventListener('click', e => {
+  const tp = e.target.closest('.btop'); if (tp){ e.preventDefault(); if (dw.open) dw.close(); if ($('#idx').open) $('#idx').close(); history.replaceState(null, '', location.pathname + location.search); scrollTo({top: 0, behavior: reduce ? 'auto' : 'smooth'}); return; }
+  if (e.target.closest('[data-profile]')) return openProfile();
+  const o = e.target.closest('[data-open]'); if (!o || o.closest('#dw')) return;
+  openP(o.dataset.open, +(o.dataset.i || 0));
+});
+const curEl = $('#cur');
+document.addEventListener('pointermove', e => {
+  if (e.pointerType !== 'mouse') return;
+  curEl.style.translate = `${e.clientX}px ${e.clientY}px`;
+  curEl.classList.toggle('on', !!e.target.closest('.it[data-open],.it[data-profile]'));
+}, {passive:true});
+$('#copy').onclick = async () => {
+  const t = document.createElement('div'); t.className = 'toast';
+  try { await navigator.clipboard.writeText('tonio.cocco@etu.umontpellier.fr'); t.textContent = 'Adresse copiée'; } catch(err){ t.textContent = 'Copie impossible ici, sélectionnez l\'adresse'; }
+  document.body.append(t); setTimeout(() => t.remove(), 2200);
+};
+const route = () => { const h = decodeURIComponent(location.hash.slice(1)); if (h === 'profil') openProfile(); else if (h.startsWith('p-') && P[h.slice(2)]) openP(h.slice(2)); };
+addEventListener('hashchange', route);
+
+layout(); route();
+addEventListener('load', layout);
+if (document.fonts) document.fonts.ready.then(layout);
+}
+</script></body></html>
